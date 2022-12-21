@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import { AddMemberForm } from './components/AddFamilyMember';
+import { ListFamilyMembers } from './components/ListFamilyMembers';
+import { AddRelationship } from './components/AddRelationship';
+
 
 const StyledApp = styled.div`
   // Your style here
@@ -8,7 +13,11 @@ const StyledApp = styled.div`
 export function App() {
   return (
     <StyledApp>
-      <NxWelcome title="fam-stories-app" />
+      <Provider store={store}>
+        <ListFamilyMembers />
+        <AddMemberForm />
+        <AddRelationship />
+      </Provider>
     </StyledApp>
   );
 }
