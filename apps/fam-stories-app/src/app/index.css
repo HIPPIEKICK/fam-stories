@@ -1,0 +1,24 @@
+:root {
+ --color-white: #FFFBF4;
+ --color-red: #783438;
+ --color-green: #A8BBA8;
+ --color-black: #2c2c2c;
+
+ --font-main: 'Open Sans', sans-serif;
+ --font-secondary: 'Cinzel Decorative', cursive;
+ 
+}
+
+*
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }

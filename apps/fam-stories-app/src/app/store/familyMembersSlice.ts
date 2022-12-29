@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { generateId } from "../idHelper";
 
-
-
 export enum RelationshipType { 
     Father = 'Father',
     Mother = 'Mother',
@@ -13,16 +11,15 @@ export enum RelationshipType {
 }
 
 export const listOfRelationShipTypes = Object.values(RelationshipType);
-
 type Relationship = { 
     relationtype: RelationshipType;
     familyMemberId: string;
 }
-
 type FamilyMemberInput = { 
     name: string;
     birthYear: string;
 };
+
 export type FamilyMember = FamilyMemberInput & { 
     id: string;
     relationships: Relationship[];
@@ -63,8 +60,8 @@ export const familyMembersSlice = createSlice({
         const memberToEdit = state.familyMembers[indexOfMemberToEdit];
         const secondMemberToEdit = state.familyMembers[indexOfMemberSecondToEdit];
 
-        memberToEdit.relationships.push({ relationtype:(< any>RelationshipType)[action.payload.relationtype], familyMemberId: action.payload.toFamilyMemberId });
-        secondMemberToEdit.relationships.push({ relationtype:(< any>RelationshipType)[action.payload.relationtype], familyMemberId: action.payload.fromFamilyMemberId });
+        memberToEdit.relationships.push({ relationtype:(<any>RelationshipType)[action.payload.relationtype], familyMemberId: action.payload.toFamilyMemberId });
+        secondMemberToEdit.relationships.push({ relationtype:(<any>RelationshipType)[action.payload.relationtype], familyMemberId: action.payload.fromFamilyMemberId });
         state.familyMembers[indexOfMemberToEdit] = { ...memberToEdit };
         state.familyMembers[indexOfMemberSecondToEdit] = { ...secondMemberToEdit };
         localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
