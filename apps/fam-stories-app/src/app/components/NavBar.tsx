@@ -42,5 +42,4 @@ export const Nav = styled.li`
     background-color: var(--color-darkerRed);
     text-decoration: underline;
 }
-  
 `

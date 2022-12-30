@@ -37,6 +37,5 @@ export const Picture = styled.div`
     background-image: url(${brightrootsMini});
     background-size: cover;
     width: 100%;
-    background-attachment: scroll;
     opacity: 0.9;
 `

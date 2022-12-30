@@ -4,7 +4,9 @@ export const OuterWrapper = styled.section`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: var(--color-green);
+    background-color: var(--color-white);
+    border: 2px solid red;
+
 `
 export const InnerWrapper = styled.div`
     display: flex;
@@ -13,6 +15,7 @@ export const InnerWrapper = styled.div`
     align-items: center;
     width: 80%;
     background-color: var(--color-white);
+    border: 2px solid blue;
 `
 
 export const Button = styled.button`
