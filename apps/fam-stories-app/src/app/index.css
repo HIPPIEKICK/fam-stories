@@ -1,6 +1,8 @@
 :root {
  --color-white: #FFFBF4;
- --color-red: #783438;
+ --color-lighterRed:#935C5F;
+ --color-red: #85484B;
+ --color-darkerRed:#783438;
  --color-green: #A8BBA8;
  --color-black: #2c2c2c;
 
@@ -21,4 +23,10 @@ body {
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }

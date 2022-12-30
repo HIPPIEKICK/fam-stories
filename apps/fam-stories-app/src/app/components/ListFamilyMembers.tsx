@@ -20,7 +20,6 @@ export const ListFamilyMembers = () => {
   }
 
     const listOfFamilyMembers = familyMembers.map((familyMember) => {
-        
         const familyRelationshipList = familyMember.relationships && familyMember.relationships.map((familyRelationship) => { 
             const relationshipMemberData = familyMembers.find((familyMember) => familyMember.id === familyRelationship.familyMemberId);
             return <div>{relationshipMemberData?.name} </div>;
@@ -39,7 +38,7 @@ export const ListFamilyMembers = () => {
         <OuterWrapper>
             <InnerWrapper>
             <Header />
-            <SubTitle> Here is a list of all familymembers added</SubTitle>   
+            <SubTitle> Here is a list of all family members added</SubTitle>   
             <ul>{listOfFamilyMembers}</ul> 
             <Button type="button" onClick={onHomeButtonClick}>Return to Home Page</Button> 
             <Footer />

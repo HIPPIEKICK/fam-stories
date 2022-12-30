@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { addFamilyMember, addRelationshipToMember, FamilyMember, listOfRelationShipTypes } from "../store/familyMembersSlice";
+import { addRelationshipToMember, FamilyMember, listOfRelationShipTypes } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 
 export const AddRelationship = () => {
@@ -13,6 +13,7 @@ export const AddRelationship = () => {
     const dispatch = useAppDispatch();
     
     const onSubmit = (e: FormEvent) => {
+
         e.preventDefault()
         dispatch(addRelationshipToMember({fromFamilyMemberId, toFamilyMemberId, relationtype}))
     }

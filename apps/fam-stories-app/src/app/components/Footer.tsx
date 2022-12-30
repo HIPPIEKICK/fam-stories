@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { BodyText } from "./GlobalStyles";
-import { HeaderWrapper } from "./Header";
 
 export const Footer = () => {
     return (
@@ -11,8 +10,18 @@ export const Footer = () => {
     )
   };
 
-const FooterWrapper = styled(HeaderWrapper)`
+const FooterWrapper = styled.section`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
     height: 10vh;
+    border: solid 2px var(--color-darkerRed);;
+    border-radius: 5px;
     text-align: end;
-    margin-right: 1em;
+    justify-content: end;
+    padding-right: 1em;
+    background-color: var(--color-lighterRed);
 `
+
+

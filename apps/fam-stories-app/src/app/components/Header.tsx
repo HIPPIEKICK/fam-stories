@@ -2,25 +2,39 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Title, SubTitle } from './GlobalStyles';
+import { Navbar } from './NavBar';
+import brightrootsS from '../images/brightrootsS.jpg'
 
 export const Header = () => {
   return (
-    <HeaderWrapper>
-        <Title> FamStories</Title>
-        <SubTitle> See your roots take place and water them with history </SubTitle>
+    <Picture>
+          <img src={brightrootsS} alt="Roots" />
+      <HeaderWrapper>
+              <Navbar />
+              <Title> FamStories</Title>
+              <SubTitle> See your roots take place and water them with history </SubTitle>
     </HeaderWrapper>
+    </Picture>
   )
 };
 
 export const HeaderWrapper = styled.section`
-    width: 80%;
-    height: 25vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 0%;
+    height: 30vh;
     padding: 1.5em;
-    margin-bottom: 1em;
-    border: solid 2px var(--color-green);
-    background-color: rgb(120, 52, 56, 0.9);
+    border: solid 4px purple;
     line-height: 1;
     border-radius: 5px;
     text-align: center;
-    color: var(--color-white); 
+`
+export const Picture = styled.div`
+    position: relative;
+    background-color: var(--color-lighterRed);
+    background-image: url(${brightrootsS});
+    outline: 2px solid red;
+    opacity: 0.9;
 `

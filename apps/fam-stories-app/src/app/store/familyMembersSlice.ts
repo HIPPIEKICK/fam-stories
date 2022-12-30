@@ -18,6 +18,8 @@ type Relationship = {
 type FamilyMemberInput = { 
     name: string;
     birthYear: string;
+    locality: string;
+    title: string
 };
 
 export type FamilyMember = FamilyMemberInput & { 
@@ -49,7 +51,7 @@ export const familyMembersSlice = createSlice({
       editFamilyMember: (state, action: PayloadAction<string>) => {
         const indexOfMemberToEdit = state.familyMembers.findIndex(member => member.id === action.payload);
         const memberToEdit = state.familyMembers[indexOfMemberToEdit];
-        state.familyMembers[indexOfMemberToEdit] = { ...memberToEdit, name: 'redacted' };
+        state.familyMembers[indexOfMemberToEdit] = { ...memberToEdit, name: 'edited' };
         localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
         return state;
       },
