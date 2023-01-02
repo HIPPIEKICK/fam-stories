@@ -11,8 +11,8 @@ const NotFound = () => {
   }
   return (
     <OuterWrapper>
+      <Header />
         <InnerWrapper>
-            <Header />
             <SubTitle>Sorry there is no such page</SubTitle>
             <Button type="button" onClick={onHomeButtonClick}>Return to Home Page</Button>
             <Footer />

@@ -11,12 +11,13 @@ export const Footer = () => {
   };
 
 const FooterWrapper = styled.section`
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
+    bottom: 0%;
     width: 100%;
     height: 10vh;
-    outline: solid 2px var(--color-darkerRed);;
+    outline: solid 4px var(--color-darkerRed);;
     border-radius: 5px;
     text-align: end;
     justify-content: end;

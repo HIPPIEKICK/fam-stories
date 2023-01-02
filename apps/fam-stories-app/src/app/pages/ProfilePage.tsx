@@ -7,12 +7,12 @@ import { OuterWrapper, InnerWrapper, ThirdTitle, Button  } from '../components/G
 export const ProfilePage = () => {
     const navigate = useNavigate();
     const onHomeButtonClick = () => {
-    navigate('/profilepage');
+    navigate('/');
   }
     return (
         <OuterWrapper>
+            <Header />
             <InnerWrapper>
-                <Header />
                 <ThirdTitle> Här är en sida för att addera information om varje familjemedlem om det finns. Exempelvis tester, foton, videos, eller annat som recept eller tidningsutklipp.
                 </ThirdTitle>
                 <Button type="button" onClick={onHomeButtonClick}>Return to Home Page</Button>

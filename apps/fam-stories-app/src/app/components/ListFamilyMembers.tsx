@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { editFamilyMember, FamilyMember, hydrateFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
+import styled from "styled-components";
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { OuterWrapper, InnerWrapper, SubTitle, Button } from "./GlobalStyles";
@@ -27,9 +28,9 @@ export const ListFamilyMembers = () => {
     
         return (
             <li key={familyMember.id}>
-            {familyMember.name} - {familyMember.birthYear}
+            {familyMember.name} - {familyMember.birthYear} 
             <div>{familyRelationshipList}</div>
-            <Button onClick={() => dispatch(editFamilyMember(familyMember.id))}>Redact</Button>
+            <Button onClick={() => dispatch(editFamilyMember(familyMember.id))}>Edit</Button>
             </li>
         );
     });
@@ -38,10 +39,26 @@ export const ListFamilyMembers = () => {
         <OuterWrapper>
             <InnerWrapper>
             <Header />
-            <SubTitle> Here is a list of all family members added</SubTitle>   
-            <ul>{listOfFamilyMembers}</ul> 
+            <SubTitle> Here is a list of all your added relatives</SubTitle>   
+            <ListWrapper>
+            <FamList>{listOfFamilyMembers}</FamList> 
+            </ListWrapper>
             <Button type="button" onClick={onHomeButtonClick}>Return to Home Page</Button> 
             <Footer />
             </InnerWrapper>
         </OuterWrapper>);
 };
+
+export const FamList = styled.ul`
+    font-family: 'Open Sans';
+    font-weight: 400;
+`
+export const ListWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    
+    border: 2px solid purple;
+`

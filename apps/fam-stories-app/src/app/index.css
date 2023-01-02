@@ -1,4 +1,5 @@
 :root {
+ --color-whiter: #fbf7f0;   
  --color-white: #FFFBF4;
  --color-lighterRed:#935C5F;
  --color-red: #85484B;
@@ -6,11 +7,11 @@
  --color-lighterGreen:#C2CFC2;
  --color-green: #A8BBA8;
  --color-darkerGreen:#869586;
+ --color-brown:#603b1cbd;
  --color-black: #2c2c2c;
 
  --font-main: 'Open Sans', sans-serif;
  --font-secondary: 'Cinzel Decorative', cursive;
- 
 }
 
 *

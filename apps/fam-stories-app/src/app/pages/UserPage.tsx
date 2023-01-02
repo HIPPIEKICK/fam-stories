@@ -12,8 +12,8 @@ export const UserPage = () => {
 
   return (
     <OuterWrapper>
+      <Header />
         <InnerWrapper>
-            <Header />
             <SubTitle>Here is some info about the user or a logg out link/page</SubTitle>
             <Button type="button" onClick={onHomeButtonClick}>Return to Home Page</Button>
             <Footer />
