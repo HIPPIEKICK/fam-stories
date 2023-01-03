@@ -8,6 +8,7 @@ import { AboutAppPage } from './pages/AboutAppPage';
 import { UserPage } from './pages/UserPage';
 import { ListFamilyMembers } from './components/ListFamilyMembers';
 import NotFound from './pages/NotFound';
+import { EditProfilePage } from './pages/EditProfilePage';
 
 export const App = () => {
   return (
@@ -15,7 +16,8 @@ export const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<RootsPage />} />
-            <Route path="/profilepage" element={<ProfilePage />} /> 
+            <Route path="/profilepage/:familyMemberId" element={<ProfilePage />} /> 
+            <Route path="/editprofile/:familyMemberId" element={<EditProfilePage />} /> 
             <Route path="/aboutpage" element={<AboutAppPage />} />
             <Route path="/userpage" element={<UserPage />} />
             <Route path="/listfamilymembers" element={<ListFamilyMembers />} />    

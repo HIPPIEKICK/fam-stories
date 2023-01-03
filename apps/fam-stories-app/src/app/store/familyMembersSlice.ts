@@ -22,13 +22,18 @@ type FamilyMemberInput = {
     title: string
 };
 
+type FamilyMemberEditInput = & FamilyMemberInput & { 
+    id: string;
+}
+
 export type FamilyMember = FamilyMemberInput & { 
     id: string;
     relationships: Relationship[];
 };
 
 const initialState = {
-    familyMembers: [] as FamilyMember[]
+    familyMembers: [] as FamilyMember[],
+    lastFamilyMemberIdAdded: '', 
 }
 
 type RelationshipInput = {
@@ -45,13 +50,14 @@ export const familyMembersSlice = createSlice({
         const newFamilyMember = { ... action.payload, id: generateId(), relationships: [] };
         state.familyMembers.push(newFamilyMember);
         localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
+        state.lastFamilyMemberIdAdded = newFamilyMember.id;
         return state;
       },
       
-      editFamilyMember: (state, action: PayloadAction<string>) => {
-        const indexOfMemberToEdit = state.familyMembers.findIndex(member => member.id === action.payload);
+      editFamilyMember: (state, action: PayloadAction<FamilyMemberEditInput>) => {
+        const indexOfMemberToEdit = state.familyMembers.findIndex(member => member.id === action.payload.id);
         const memberToEdit = state.familyMembers[indexOfMemberToEdit];
-        state.familyMembers[indexOfMemberToEdit] = { ...memberToEdit, name: 'edited' };
+        state.familyMembers[indexOfMemberToEdit] = { ...action.payload, relationships: memberToEdit.relationships };
         localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
         return state;
       },
@@ -61,6 +67,10 @@ export const familyMembersSlice = createSlice({
         const indexOfMemberSecondToEdit = state.familyMembers.findIndex(member => member.id === action.payload.toFamilyMemberId);
         const memberToEdit = state.familyMembers[indexOfMemberToEdit];
         const secondMemberToEdit = state.familyMembers[indexOfMemberSecondToEdit];
+
+        console.log('memberToEdit', memberToEdit);
+        console.log('secondMemberToEdit', action.payload.toFamilyMemberId);
+
 
         memberToEdit.relationships.push({ relationtype:(<any>RelationshipType)[action.payload.relationtype], familyMemberId: action.payload.toFamilyMemberId });
         secondMemberToEdit.relationships.push({ relationtype:(<any>RelationshipType)[action.payload.relationtype], familyMemberId: action.payload.fromFamilyMemberId });

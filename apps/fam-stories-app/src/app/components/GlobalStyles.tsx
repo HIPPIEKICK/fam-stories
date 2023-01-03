@@ -15,18 +15,20 @@ position: relative;
     justify-content: flex-start;
     align-items: center;
     width: 80%;
-    height :100vh;
     background-color: var(--color-white);
-    border: 2px solid blue;
+    //border: 2px solid blue;
 `
 
-export const Button = styled.button`
+export const BackButton = styled.button`
+    position: absolute;
+    top: 2%;
+    left: 2%;
     font-size: 1em;
     margin: 1em 0em;
-    padding: 0.25em 0.5em;
-    border-radius: 10px;
-    border: 1px solid var(--color-black);
-    box-shadow: 5px 5px 5px grey;
+    padding: 0.5em 0.65em;
+    border-radius: 14px;
+    border: 1px solid var(--color-darkerBrown);
+    box-shadow: 3px 3px 3px grey;
     background-color: var(--color-brown);
     color: var(--color-white);
     width: fit-content;
@@ -37,7 +39,25 @@ export const Button = styled.button`
     transition: 0.7s;
 }
 `
-export const ExpandButton = styled.button`
+export const EditButton = styled.button`
+    font-size: 1em;
+    margin: 1em 0em;
+    padding: 0.5em 0.65em;
+    border-radius: 14px;
+    border: 1px solid var(--color-darkerBrown);
+    box-shadow: 3px 3px 3px grey;
+    background-color: var(--color-brown);
+    color: var(--color-white);
+    width: fit-content;
+
+&:hover {
+    background-color: var(--color-white);
+    color: var(--color-brown);
+    transition: 0.7s;
+}
+`
+
+export const ShowButton = styled.button`
 color: white;
 background-color: #FFB800;
 border-radius: 50%;
@@ -59,8 +79,8 @@ width: 55px;
 border: none;
 &:hover{
   color: var(--color-red);
-  background-color: white;
-  transition: ease-out 300ms;
+  background-color: green;
+  transition: ease-out 0.7s;
 }
 `
 export const CloseButton = styled.button`
@@ -72,8 +92,8 @@ width: 55px;
 border: none;
 &:hover{
   color: var(--color-green);
-  background-color: white;
-  transition: ease-out 300ms;
+  background-color: yellow;
+  transition: ease-out 0.7s;
 }
 `
 export const StartButton = styled.button`
@@ -104,7 +124,7 @@ export const SubTitle = styled.h2`
 export const ThirdTitle = styled.h3`
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 1.7em;
+    font-size: 1.5em;
 `
 
 export const BodyText =styled.p`

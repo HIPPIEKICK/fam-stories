@@ -5,20 +5,20 @@ import CloseIcon from '@mui/icons-material/Close';*/
 import { AddMemberForm } from "./AddFamilyMember";
 import { AddRelationship } from "./AddRelationship";
 import styled from "styled-components";
-import { ExpandButton, OpenButton, CloseButton } from "./GlobalStyles";
+import { ShowButton, OpenButton, CloseButton } from "./GlobalStyles";
 
 const AddForm = () => {
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(false);
 
 const toggleClass = () => {
         setVisible(!visible)
       }
     return(
         <section>
-        <ExpandButton
+        <ShowButton
           onClick={toggleClass}>
           {visible ? < CloseButton /> : < OpenButton />}
-        </ExpandButton>
+        </ShowButton>
         <AddFamForm>
             <AddMemberForm />
             <AddRelationship />
@@ -33,7 +33,8 @@ export const AddFamForm = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 2%;
     background-color:var(--color-whiter); 
-    box-shadow: 4px 4px 4px 5px grey;
+    box-shadow: 3px 3px 3px 4px grey;
     border-radius: 1em;
 `

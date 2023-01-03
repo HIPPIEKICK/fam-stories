@@ -1,23 +1,57 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import {  useAppSelector  } from "../store/store";
+import styled from 'styled-components';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, Button  } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText  } from '../components/GlobalStyles';
 
 export const ProfilePage = () => {
+    const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
+    const { familyMemberId } = useParams();
+
+    const familyMember = familyMembers.find((familyMember) => familyMember.id === familyMemberId);
+    
     const navigate = useNavigate();
     const onHomeButtonClick = () => {
-    navigate('/');
-  }
-    return (
-        <OuterWrapper>
-            <Header />
-            <InnerWrapper>
-                <ThirdTitle> Här är en sida för att addera information om varje familjemedlem om det finns. Exempelvis tester, foton, videos, eller annat som recept eller tidningsutklipp.
-                </ThirdTitle>
-                <Button type="button" onClick={onHomeButtonClick}>Return to Home Page</Button>
-                <Footer />
-            </InnerWrapper>
-        </OuterWrapper>
-    )
-}
+        navigate('/');
+    }
+    if(!familyMember) {
+        return <BodyText>Family member not found</BodyText>
+    }
+
+    const listOfRelationships =  familyMember.relationships.map((relationship) => {
+        const relationMember = familyMembers.find((familyMember) => familyMember.id === relationship.familyMemberId) 
+        return <div>{relationship.relationtype} - {relationMember?.name} </div>
+    });
+
+        return (
+            <OuterWrapper>
+                <Header />
+                <InnerWrapper>
+                    <ProfileWrapper>
+                    <ThirdTitle>
+
+                        Namn: {familyMember.name} <br />
+                        Födelseår: {familyMember.birthYear} <br />
+                        Ort: {familyMember.locality} <br />
+                        Titel: {familyMember.title} <br />
+                        {listOfRelationships}
+                    
+                        Här är en sida för att addera information om varje familjemedlem om det finns. 
+                        Exempelvis tester, foton, videos, eller annat som recept eller tidningsutklipp.
+                        
+                    </ThirdTitle>
+                    </ProfileWrapper>
+                    <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton>
+                    <Footer />
+                </InnerWrapper>
+            </OuterWrapper>
+        )
+    }    
+
+    export const ProfileWrapper = styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+    `

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { editFamilyMember, FamilyMember, hydrateFamilyMember } from "../store/familyMembersSlice";
+import { useNavigate, Link } from 'react-router-dom';
+import { FamilyMember, hydrateFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { OuterWrapper, InnerWrapper, SubTitle, Button } from "./GlobalStyles";
+import { OuterWrapper, InnerWrapper, SubTitle, BackButton, EditButton } from "./GlobalStyles";
 
 export const ListFamilyMembers = () => {
     const dispatch = useAppDispatch();
@@ -28,22 +28,23 @@ export const ListFamilyMembers = () => {
     
         return (
             <li key={familyMember.id}>
-            {familyMember.name} - {familyMember.birthYear} 
-            <div>{familyRelationshipList}</div>
-            <Button onClick={() => dispatch(editFamilyMember(familyMember.id))}>Edit</Button>
+            <li><Link to={`/profilepage/${familyMember.id}`}>{familyMember.name}</Link> </li>- {familyMember.birthYear} - {familyMember.locality} - {familyMember.title}
+            <RelationList>{familyRelationshipList}</RelationList>
+            <EditButton onClick={() => navigate('/editprofile/' + familyMember.id) }>Edit</EditButton>
             </li>
         );
     });
 
+
     return (
         <OuterWrapper>
-            <InnerWrapper>
             <Header />
+            <InnerWrapper>
             <SubTitle> Here is a list of all your added relatives</SubTitle>   
             <ListWrapper>
             <FamList>{listOfFamilyMembers}</FamList> 
             </ListWrapper>
-            <Button type="button" onClick={onHomeButtonClick}>Return to Home Page</Button> 
+            <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton> 
             <Footer />
             </InnerWrapper>
         </OuterWrapper>);
@@ -51,14 +52,30 @@ export const ListFamilyMembers = () => {
 
 export const FamList = styled.ul`
     font-family: 'Open Sans';
+    font-size: 1em;
+    font-weight: 600;
+
+    a {
+        text-decoration: none;
+        color: var(--color-black);
+    }
+
+    a:hover {
+        font-size: 1.25em;
+        transition: 0.5s;
+    }
+`
+export const RelationList = styled(FamList)`
     font-weight: 400;
 `
 export const ListWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 10px;
-    
+    margin: 1em;
+    padding: 1em;
+    width: 20%;
     border: 2px solid purple;
 `

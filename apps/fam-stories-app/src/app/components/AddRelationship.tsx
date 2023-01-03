@@ -1,32 +1,46 @@
 import { FormEvent, useState } from "react";
-import { addFamilyMember, addRelationshipToMember, FamilyMember, listOfRelationShipTypes } from "../store/familyMembersSlice";
+import { addRelationshipToMember, FamilyMember, listOfRelationShipTypes } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
-import { Button } from "./GlobalStyles";
+import { EditButton } from "./GlobalStyles";
+import { useParams } from 'react-router-dom';
 
 export const AddRelationship = () => {
-    const [fromFamilyMemberId, setFromFamilyMemberId] = useState('');
     const [toFamilyMemberId, setToFamilyMemberId] = useState('');
     const [relationtype, setRelationtype] = useState('');
 
     const familyMembers = useAppSelector<FamilyMember[]>(state => state.familyMembers.familyMembers);
-    
+    const { familyMemberId } = useParams();
+    const familyMember = familyMembers.find(familyMember => familyMember.id === familyMemberId);
     
     const dispatch = useAppDispatch();
     
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
-        dispatch(addRelationshipToMember({fromFamilyMemberId, toFamilyMemberId, relationtype}))
+        if(familyMemberId) {
+            dispatch(addRelationshipToMember({fromFamilyMemberId: familyMemberId, toFamilyMemberId, relationtype}))
+        }
+        
     }
 
-    const relationOptionlist = listOfRelationShipTypes.map((relationtype) => {return <option value={relationtype}>{relationtype}</option>});
-    const familymemberOptionList = familyMembers.map((familyMember) => {return <option value={familyMember.id}>{familyMember.name}</option>});
+    const relationOptionlist = [
+        <option value="">Select a relation</option>,
+        ...listOfRelationShipTypes.map((relationtype) => {return <option value={relationtype}>{relationtype}</option>})]
+    const familymemberOptionList = [
+        <option value="">Select a family member</option>,
+        ...familyMembers.map((familyMember) => {return <option value={familyMember.id}>{familyMember.name}</option>})
+    ];
+    
+
+    const relationshipList = familyMember?.relationships.map((relationship, index) => { 
+        const member = familyMembers.find(familyMember => familyMember.id === relationship.familyMemberId);
+        return <div key={index}>{relationship.relationtype} { member?.name }</div>
+    });
 
     return <RelationForm onSubmit={onSubmit}>
-        <Select id="fromFamilyMemberId" 
-                value={fromFamilyMemberId} 
-                onChange={e => setFromFamilyMemberId(e.target.value)}>{familymemberOptionList}</Select>
-                <label htmlFor="fromFamilyMemberId"></label>
+       
+       {relationshipList}
+        
         <Label htmlFor="relationtype">is</Label>
         <Select id="relationtype" 
                 value={relationtype} 
@@ -35,7 +49,7 @@ export const AddRelationship = () => {
         <Select id="toFamilyMemberId" 
                 value={toFamilyMemberId} 
                 onChange={e => setToFamilyMemberId(e.target.value)}>{familymemberOptionList}</Select>
-        <Button type="submit">Add relation</Button>
+        <EditButton disabled={toFamilyMemberId === '' || relationtype === ''} type="submit">Add relation</EditButton>
     </RelationForm>
 };
 

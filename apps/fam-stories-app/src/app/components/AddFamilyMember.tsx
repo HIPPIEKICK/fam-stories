@@ -1,23 +1,58 @@
-import { FormEvent, useState } from "react";
-import { addFamilyMember } from "../store/familyMembersSlice";
-import { useAppDispatch } from "../store/store";
-import { Button } from "./GlobalStyles";
+import { FormEvent, useState, useEffect } from "react";
+import { addFamilyMember, editFamilyMember } from "../store/familyMembersSlice";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { EditButton } from "./GlobalStyles";
 import styled from "styled-components";
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const AddMemberForm = () => {
+    const { familyMemberId } = useParams();
+    const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
+    const lastFamilyMemberIdAdded = useAppSelector ((store) => store.familyMembers.lastFamilyMemberIdAdded)
+
     const [name, setName] = useState('');
     const [birthYear, setBirthYear] = useState('');
     const [locality, setLocality] = useState('')
     const [title, setTitle] = useState('')
+    const [id, setId] = useState('')
+    const [isSaved, setIsSaved] = useState(false)
     
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => { 
+        if(lastFamilyMemberIdAdded && isSaved) {
+            navigate(`/editprofile/${lastFamilyMemberIdAdded}`)
+        }
+    }, [lastFamilyMemberIdAdded, isSaved, navigate])
+
+    useEffect(() => {
+        if (familyMemberId) {
+            const familyMember = familyMembers.find(familyMember => familyMember.id === familyMemberId);
+            if (familyMember) {
+                setName(familyMember.name);
+                setBirthYear(familyMember.birthYear);
+                setLocality(familyMember.locality);
+                setTitle(familyMember.title);
+                setId(familyMember.id);
+            }
+        }
+        
+    }, [familyMemberId, familyMembers]);
     
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
-        dispatch(addFamilyMember({name, birthYear, locality, title}))
+        if(familyMemberId) { 
+            dispatch(editFamilyMember({name, birthYear, locality, title, id}))
+        } else {
+            dispatch(addFamilyMember({name, birthYear, locality, title}))
+        }
+
+        setIsSaved(true);        
     }
 
     return <MemberForm onSubmit={onSubmit}>
+        {familyMemberId ? <h2>Edit Family Member ({familyMemberId})</h2> : <h2>Add Family Member</h2>}
         <label htmlFor="name">Name</label>
         <input type="text" 
                 id="name" 
@@ -38,7 +73,7 @@ export const AddMemberForm = () => {
                 id="title" 
                 value={title} 
                 onChange={e => setTitle(e.target.value)} />            
-        <Button type="submit">Add person</Button>
+        {familyMemberId ?  <EditButton disabled={name === ''} type="submit"> Save</EditButton> : <EditButton disabled={name === ''} type="submit"> Add person</EditButton>}
     </MemberForm>
 }
 

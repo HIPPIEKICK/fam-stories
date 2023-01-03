@@ -9,8 +9,8 @@ import brightrootsMini from '../images/brightrootsMini.jpg'
 export const Header = () => {
   return (
     <><Picture>
-          <img src={brightrootsMini} alt="Roots" />
-          <Navbar />
+            <img src={brightrootsMini} alt="Roots" />
+             <Navbar />
       </Picture>
       <HeaderWrapper>  
             <Title> FamStories</Title>
@@ -31,7 +31,6 @@ export const HeaderWrapper = styled.section`
     padding: 0.5em;
     line-height: 1;
     color: var(--color-white);
-
 `
 export const Picture = styled.div`
     position: relative;
