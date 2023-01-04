@@ -12,7 +12,7 @@ export const AddRelationship = () => {
     const familyMembers = useAppSelector<FamilyMember[]>(state => state.familyMembers.familyMembers);
     const { familyMemberId } = useParams();
     const familyMember = familyMembers.find(familyMember => familyMember.id === familyMemberId);
-    
+
     const dispatch = useAppDispatch();
     
     const onSubmit = (e: FormEvent) => {
@@ -20,7 +20,6 @@ export const AddRelationship = () => {
         if(familyMemberId) {
             dispatch(addRelationshipToMember({fromFamilyMemberId: familyMemberId, toFamilyMemberId, relationtype}))
         }
-        
     }
 
     const relationOptionlist = [
@@ -38,10 +37,8 @@ export const AddRelationship = () => {
     });
 
     return <RelationForm onSubmit={onSubmit}>
-       
-       {relationshipList}
-        
-        <Label htmlFor="relationtype">is</Label>
+              
+        <Label htmlFor="relationtype"></Label>
         <Select id="relationtype" 
                 value={relationtype} 
                 onChange={e => setRelationtype(e.target.value)}>{relationOptionlist}</Select>       

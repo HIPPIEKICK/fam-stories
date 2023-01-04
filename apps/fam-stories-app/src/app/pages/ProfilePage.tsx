@@ -3,7 +3,7 @@ import {  useAppSelector  } from "../store/store";
 import styled from 'styled-components';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText  } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, SubTitle  } from '../components/GlobalStyles';
 
 export const ProfilePage = () => {
     const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
@@ -29,19 +29,18 @@ export const ProfilePage = () => {
                 <Header />
                 <InnerWrapper>
                     <ProfileWrapper>
-                    <ThirdTitle>
-
-                        Namn: {familyMember.name} <br />
-                        Födelseår: {familyMember.birthYear} <br />
-                        Ort: {familyMember.locality} <br />
-                        Titel: {familyMember.title} <br />
-                        {listOfRelationships}
+                    <ThirdTitle>{familyMember.name}</ThirdTitle>
+                    <BodyText>
+                       Born: {familyMember.birthYear} <br />
+                       Lives: {familyMember.locality} <br />
+                        {familyMember.title} <br />
+                    </BodyText>
+                    <BodyText>{listOfRelationships} <br /> </BodyText>
+                    </ProfileWrapper>    
+                    <BodyText>
+                        Här är en sida för att addera information om varje familjemedlem om det finns. <br />
+                        Exempelvis tester, foton, videos, eller annat som recept eller tidningsutklipp.</BodyText>
                     
-                        Här är en sida för att addera information om varje familjemedlem om det finns. 
-                        Exempelvis tester, foton, videos, eller annat som recept eller tidningsutklipp.
-                        
-                    </ThirdTitle>
-                    </ProfileWrapper>
                     <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton>
                     <Footer />
                 </InnerWrapper>
@@ -51,7 +50,10 @@ export const ProfilePage = () => {
 
     export const ProfileWrapper = styled.div`
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 80%;
+        padding-left: 10%;
+        margin-top: 5%;
+        //border: 2px solid var(--color-green);
     `

@@ -27,7 +27,7 @@ export const HeaderWrapper = styled.section`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 30vh;
+    height: 25vh;
     padding: 0.5em;
     line-height: 1;
     color: var(--color-white);
@@ -39,4 +39,4 @@ export const Picture = styled.div`
     background-size: cover;
     width: 80%;
     opacity: 0.9;
-`
+    `

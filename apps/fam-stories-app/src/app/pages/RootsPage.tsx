@@ -22,9 +22,8 @@ export const RootsPage = () => {
     <OuterWrapper>
       <Header />
         <InnerWrapper>
-            <ThirdTitle> Here will the d3 graph make some kind of root system</ThirdTitle>
-            <StartButton>Start</StartButton>
-            <BodyText> An add and close button to show the form</BodyText>
+            <BodyText>Fill in the form and let the graph make the roots </BodyText>
+            <StartButton>ME</StartButton>
             <TheTree graphData={graphData} />
             <AddFamForm>
               <AddMemberForm />

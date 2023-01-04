@@ -21,5 +21,6 @@ const FooterWrapper = styled.section`
     border-radius: 2px;
     text-align: end;
     justify-content: end;
+    color: var(--color-white); 
     background-color: var(--color-lighterRed);
 `

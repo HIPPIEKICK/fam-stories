@@ -50,7 +50,10 @@
     "url-loader": "^4.1.1"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.3",
     "@reduxjs/toolkit": "^1.9.1",
     "core-js": "^3.6.5",
     "express": "^4.18.1",
@@ -58,6 +61,7 @@
     "react-dom": "18.2.0",
     "react-favicon": "^1.0.1",
     "react-force-graph-2d": "^1.23.15",
+    "react-icons": "^4.7.1",
     "react-is": "18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { OuterWrapper, InnerWrapper, SubTitle, BackButton, EditButton } from "./GlobalStyles";
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, BodyText } from "./GlobalStyles";
 
 export const ListFamilyMembers = () => {
     const dispatch = useAppDispatch();
@@ -25,6 +25,7 @@ export const ListFamilyMembers = () => {
             const relationshipMemberData = familyMembers.find((familyMember) => familyMember.id === familyRelationship.familyMemberId);
             return <div>{relationshipMemberData?.name} </div>;
         });
+
     
         return (
             <li key={familyMember.id}>
@@ -39,13 +40,14 @@ export const ListFamilyMembers = () => {
     return (
         <OuterWrapper>
             <Header />
-            <InnerWrapper>
-            <SubTitle> Here is a list of all your added relatives</SubTitle>   
-            <ListWrapper>
-            <FamList>{listOfFamilyMembers}</FamList> 
-            </ListWrapper>
-            <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton> 
-            <Footer />
+                <InnerWrapper>
+                <ThirdTitle> Here is a list of all your added relatives</ThirdTitle>
+                <BodyText>Hover over and click on the family member to go to there profile page</BodyText>   
+                <ListWrapper>
+                <FamList>{listOfFamilyMembers}</FamList> 
+                </ListWrapper>
+                <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton> 
+                <Footer />
             </InnerWrapper>
         </OuterWrapper>);
 };
@@ -71,11 +73,11 @@ export const RelationList = styled(FamList)`
 export const ListWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
     margin: 1em;
     padding: 1em;
     width: 20%;
-    border: 2px solid purple;
+    background-color: var(--color-whiter);
+    //border: 2px solid purple;
 `

@@ -1,7 +1,9 @@
 import { FormEvent, useState, useEffect } from "react";
 import { addFamilyMember, editFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { EditButton } from "./GlobalStyles";
+import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import { EditButton, AddButton } from "./GlobalStyles";
 import styled from "styled-components";
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -16,7 +18,12 @@ export const AddMemberForm = () => {
     const [title, setTitle] = useState('')
     const [id, setId] = useState('')
     const [isSaved, setIsSaved] = useState(false)
-    
+    const [visible, setVisible] = useState(false);
+
+    const toggle = () => {
+        setVisible(!visible)
+      }
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -47,7 +54,6 @@ export const AddMemberForm = () => {
         } else {
             dispatch(addFamilyMember({name, birthYear, locality, title}))
         }
-
         setIsSaved(true);        
     }
 
@@ -73,7 +79,8 @@ export const AddMemberForm = () => {
                 id="title" 
                 value={title} 
                 onChange={e => setTitle(e.target.value)} />            
-        {familyMemberId ?  <EditButton disabled={name === ''} type="submit"> Save</EditButton> : <EditButton disabled={name === ''} type="submit"> Add person</EditButton>}
+        {familyMemberId ?  <EditButton disabled={name === ''} type="submit"> Save</EditButton> : 
+                        <AddButton disabled={name === ''} type="submit"> Add person</AddButton>}
     </MemberForm>
 }
 
@@ -82,8 +89,8 @@ export const MemberForm = styled.form`
     flex-direction: column;
     padding: 15px;
     margin: 1em;
-    width: 20em;
-    box-shadow: 5px 5px 5px grey;
+    width: 16em;
+    //box-shadow: 1px 1px 3px grey;
     background-color: var(--color-green);
     border: 1px solid var(--color-lighterRed);
     font-family: 'Open Sans';
