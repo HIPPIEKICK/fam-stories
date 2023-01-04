@@ -3,7 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { AddMemberForm } from '../components/AddFamilyMember';
 import { AddFamForm } from '../components/AddForm';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BodyText, StartButton } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, BodyText, StartButton } from '../components/GlobalStyles';
 import { useAppSelector, useAppDispatch } from "../store/store";
 import { hydrateFamilyMember } from '../store/familyMembersSlice';
 import { TheTree } from '../components/TheTree';

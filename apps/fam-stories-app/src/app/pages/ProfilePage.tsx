@@ -3,7 +3,7 @@ import {  useAppSelector  } from "../store/store";
 import styled from 'styled-components';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, SubTitle  } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText } from '../components/GlobalStyles';
 
 export const ProfilePage = () => {
     const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)

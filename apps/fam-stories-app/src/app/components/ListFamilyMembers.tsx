@@ -77,7 +77,7 @@ export const ListWrapper = styled.div`
     align-items: flex-start;
     margin: 1em;
     padding: 1em;
-    width: 20%;
+    width: 40%;
     background-color: var(--color-whiter);
     //border: 2px solid purple;
 `

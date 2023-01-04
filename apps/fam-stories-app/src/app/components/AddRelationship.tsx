@@ -30,7 +30,6 @@ export const AddRelationship = () => {
         ...familyMembers.map((familyMember) => {return <option value={familyMember.id}>{familyMember.name}</option>})
     ];
     
-
     const relationshipList = familyMember?.relationships.map((relationship, index) => { 
         const member = familyMembers.find(familyMember => familyMember.id === relationship.familyMemberId);
         return <div key={index}>{relationship.relationtype} { member?.name }</div>
