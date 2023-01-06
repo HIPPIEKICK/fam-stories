@@ -16,30 +16,40 @@ export const Navbar = () => {
 }
 
 export const Nav = styled.li`
-    position: absolute;
-    top: 1em;
-    right: 1em;
+    position: relative;
+    top: 3em;
+    right: -26em;
     align-items: center;
     color: var(--color-white);
-    
+    margin: 0.5em;
+    z-index: 3;
+
     li {
     float: left;
   }
 
     a {
     display: block;
-    padding: 0.7em;
+    padding: 0.6em;
     text-decoration: none;
-    color: var(--color-white);
+    color: var(--color-black);
+    background-color:var(--color-white);
+    border-radius: 8px;
     font-family: 'Open Sans';
+    opacity: 0.7;
+    z-index: 3;
   }
 
     a:hover {
     background-color: var(--color-green);
+    border-radius: 8px;
+    z-index: 3;
   }
    
     .active {
-    background-color: var(--color-darkerRed);
+    //background-color: var(--color-red);
+    border-radius: 8px;
     text-decoration: underline;
+    color: var(--color-black);
 }
 `

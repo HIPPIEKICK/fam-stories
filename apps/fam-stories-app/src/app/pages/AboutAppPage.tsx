@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { BackButton, BodyText, InnerWrapper, OuterWrapper, ThirdTitle } from '../components/GlobalStyles';
+import { BackButton, BodyText, InnerWrapper, ThirdTitle, TextWrapper, OuterWrapper } from '../components/GlobalStyles';
+import { Navbar } from '../components/NavBar';
 
 export const AboutAppPage = () => {
     const navigate = useNavigate();
@@ -12,8 +12,9 @@ export const AboutAppPage = () => {
     }
     return (
         <OuterWrapper>
-             <Header />
             <InnerWrapper>
+                <Navbar />
+                <Header />
                 <TextWrapper>
                 <ThirdTitle>About the FamStories</ThirdTitle>  
                 <BodyText> FamStories is intended to be an interactive app for you to see your family roots take place and for you and your family to fill the roots with history. </BodyText>
@@ -26,10 +27,3 @@ export const AboutAppPage = () => {
         </OuterWrapper>
     )
 }  
-
-export const TextWrapper = styled.div`
-    display: block;
-    width: 70%;
-    height: 50vh;
-    padding: 2%;
-`

@@ -3,40 +3,53 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Title, SubTitle } from './GlobalStyles';
-import { Navbar } from './NavBar';
 import brightrootsMini from '../images/brightrootsMini.jpg'
 
 export const Header = () => {
   return (
-    <><Picture>
-            <img src={brightrootsMini} alt="Roots" />
-             <Navbar />
-      </Picture>
-      <HeaderWrapper>  
+    <HeaderWrapper>
+      <HeaderContainer>  
             <Title> FamStories</Title>
-            <SubTitle> See your roots take place and water them with history </SubTitle>
-    </HeaderWrapper></>
+            <SubTitle> See your roots take place and water <br /> them with history </SubTitle>
+      </HeaderContainer>
+    </HeaderWrapper>
   )
 };
 
 export const HeaderWrapper = styled.section`
+    position: relative;
+    right: 15%;
+    top: 1.5em;
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    height: 20em;
+    opacity: 0.9;
+    border: solid black 2px;
+`
+
+export const HeaderContainer = styled.div`
     position: absolute;
-    top: 2%;
-    left: 15%;
+    top: -1em;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
-    height: 25vh;
-    padding: 0.5em;
+    align-items: center;
+    width: 100%;
     line-height: 1;
     color: var(--color-white);
+    background-color: var(--color-lighterRed);
+    height: 12em;
+    border-radius: 50%;
+    border: 2px dotted var(--color-darkerRed);
+    box-shadow: 3px 3px 10px grey;
 `
 export const Picture = styled.div`
     position: relative;
     background-color: var(--color-lighterRed);
     background-image: url(${brightrootsMini});
     background-size: cover;
-    width: 80%;
-    opacity: 0.9;
     `

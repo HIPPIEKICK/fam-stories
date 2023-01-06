@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { addRelationshipToMember, FamilyMember, listOfRelationShipTypes } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
-import { EditButton } from "./GlobalStyles";
+import { BodyText, AddButton } from "./GlobalStyles";
 import { useParams } from 'react-router-dom';
 
 export const AddRelationship = () => {
@@ -32,11 +32,14 @@ export const AddRelationship = () => {
     
     const relationshipList = familyMember?.relationships.map((relationship, index) => { 
         const member = familyMembers.find(familyMember => familyMember.id === relationship.familyMemberId);
-        return <div key={index}>{relationship.relationtype} { member?.name }</div>
+        return <div key={index}>
+            {relationship.relationtype} 
+            <BodyText>to</BodyText>
+            { member?.name }
+            </div>
     });
 
     return <RelationForm onSubmit={onSubmit}>
-              
         <Label htmlFor="relationtype"></Label>
         <Select id="relationtype" 
                 value={relationtype} 
@@ -45,29 +48,32 @@ export const AddRelationship = () => {
         <Select id="toFamilyMemberId" 
                 value={toFamilyMemberId} 
                 onChange={e => setToFamilyMemberId(e.target.value)}>{familymemberOptionList}</Select>
-        <EditButton disabled={toFamilyMemberId === '' || relationtype === ''} type="submit">Add relation</EditButton>
+        <AddButton disabled={toFamilyMemberId === '' || relationtype === ''} type="submit">Add relation</AddButton>
     </RelationForm>
 };
 
 export const RelationForm = styled.form`
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 0.5em;
-    margin: 1em;
-    width: fit-content;
+    margin-top: 0.5em;
+    width: 12em;
     box-shadow: 5px 5px 5px grey;
     background-color: var(--color-green);
     border: 1px solid var(--color-lighterRed);
     font-family: 'Open Sans';
-    font-weight: 600;
+    font-weight: 400;
     border-radius: 1em;
 `
+
 export const Select = styled.select`
-    background-color: white;
+    background-color: var(--color-white);
     margin: 0.75em;
-    border-radius: 0.5em;
+    border-radius: 0.25em;
 `
 
 export const Label = styled.label`
     display: inline-block;
-    margin: 1em;
+    margin: 0.3em;
 `

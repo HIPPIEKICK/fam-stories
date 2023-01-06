@@ -4,8 +4,9 @@ import { Footer } from '../components/Footer';
 import { AddMemberForm } from '../components/AddFamilyMember';
 import { AddRelationship } from '../components/AddRelationship';
 import styled from 'styled-components';
-import { OuterWrapper, InnerWrapper, BackButton, AddButton } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, BackButton, AddButton, TextWrapper } from '../components/GlobalStyles';
 import { useNavigate } from 'react-router-dom';
+import { Navbar } from '../components/NavBar';
 
 export const EditProfilePage = () => {
 
@@ -20,10 +21,13 @@ export const EditProfilePage = () => {
       navigate ('/listfamilymembers');
     }
 
+
   return (
     <OuterWrapper>
-      <Header />
         <InnerWrapper>
+        <Navbar />
+         <Header />
+            <TextWrapper>
             <EditFamForm>
               <AddMemberForm />
               <AddRelationship />
@@ -31,6 +35,7 @@ export const EditProfilePage = () => {
               <AddButton type="button" onClick={onToFamListClick}>To Family list</AddButton>
             </EditFamForm>
             <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton>
+            </TextWrapper>
             <Footer />
         </InnerWrapper>
     </OuterWrapper>
@@ -42,7 +47,7 @@ export const EditFamForm = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 2%;
-    background-color: var(--color-whiter); 
+    background-color: var(--color-white); 
     box-shadow: 3px 3px 3px 4px grey;
     border-radius: 1em;
 `

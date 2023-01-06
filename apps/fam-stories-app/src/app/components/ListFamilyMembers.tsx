@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, BodyText } from "./GlobalStyles";
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, BodyText, TextWrapper } from "./GlobalStyles";
+import { Navbar } from "./NavBar";
 
 export const ListFamilyMembers = () => {
     const dispatch = useAppDispatch();
@@ -39,17 +40,21 @@ export const ListFamilyMembers = () => {
 
     return (
         <OuterWrapper>
-            <Header />
-                <InnerWrapper>
+            <InnerWrapper>
+            <Navbar />
+                <Header />
+                <TextWrapper>
                 <ThirdTitle> Here is a list of all your added relatives</ThirdTitle>
                 <BodyText>Hover over and click on the family member to go to there profile page</BodyText>   
                 <ListWrapper>
                 <FamList>{listOfFamilyMembers}</FamList> 
                 </ListWrapper>
                 <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton> 
+                </TextWrapper>
                 <Footer />
             </InnerWrapper>
-        </OuterWrapper>);
+        </OuterWrapper>
+        );
 };
 
 export const FamList = styled.ul`
@@ -75,9 +80,9 @@ export const ListWrapper = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 1em;
+    margin: 1em 0em;
     padding: 1em;
-    width: 40%;
+    width: 30%;
     background-color: var(--color-whiter);
-    //border: 2px solid purple;
+    border: 2px solid var(--color-green);
 `
