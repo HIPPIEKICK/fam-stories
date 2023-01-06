@@ -5,17 +5,21 @@ export const TheTree = ({graphData} : {graphData:Graph }) => {
     return <ForceGraph2D
           graphData={graphData}
           nodeAutoColorBy="group"
+          onNodeDragEnd={node => {
+            node.fx = node.x;
+            node.fy = node.y;
+          }}
           nodeCanvasObject={(node:any, ctx:any, globalScale:any) => {
-
+         
 
             const label = node.name;
             const fontSize = 20/globalScale;
-            ctx.font = `${fontSize}px Open-Sans`;
+            ctx.font = `${fontSize}px Open Sans`;
             const textWidth = ctx.measureText(label).width;
-            const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2); // some padding
+            const bckgDimensions = [textWidth, fontSize, ].map(n => n + fontSize * 0.8); // some padding
 
 
-            ctx.fillStyle = 'rgba(235, 107, 22, 0.8)';
+            ctx.fillStyle = 'rgba(225, 132, 216, 0.8)';
             ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions);
 
             ctx.textAlign = 'center';

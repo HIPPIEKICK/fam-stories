@@ -9,19 +9,19 @@ export const Header = () => {
   return (
     <HeaderWrapper>
       <HeaderContainer>  
-            <Title> FamStories</Title>
+            <Title> <span>FamStories</span></Title>
             <SubTitle>
-              <span>See </span>
-              <span>your </span>
-              <span>roots </span>
-              <span>take </span>
-              <span>place </span>
-              <span> <br/> </span>
-              <span>and </span>
-              <span>water </span>
-              <span>them </span>
-              <span>with </span>
-              <span>history </span>
+              <span>See</span>
+              <span>your</span>
+              <span>roots</span>
+              <span>take</span>
+              <span>place</span>
+              <span>and</span>
+              <span>water</span>
+              <span>them</span>
+              <br />
+              <span>with</span>
+              <span>history</span>
             </SubTitle>
       </HeaderContainer>
     </HeaderWrapper>
@@ -37,7 +37,7 @@ export const HeaderWrapper = styled.section`
     //justify-content: center;
     align-items: center;
     text-align: center;
-    width: 40%;
+    width: 45%;
     height: 20em;
     opacity: 0.9;
     border: solid black 2px;
