@@ -34,11 +34,11 @@ export const TextWrapper = styled.div`
 `
 
 export const BackButton = styled.button`
-    position: absolute;
-    top: 55%;
-    left: 12%;
+    position: relative;
+    top: 1%;
+    left: 0%;
     font-size: 1em;
-    margin: 1em 0em;
+    margin: 1em 1em 1em 0em;
     padding: 0.5em 0.65em;
     border-radius: 14px;
     border: 1px solid var(--color-darkerBrown);
