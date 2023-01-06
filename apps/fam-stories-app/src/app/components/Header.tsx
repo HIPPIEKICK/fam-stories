@@ -10,7 +10,19 @@ export const Header = () => {
     <HeaderWrapper>
       <HeaderContainer>  
             <Title> FamStories</Title>
-            <SubTitle> See your roots take place and water <br /> them with history </SubTitle>
+            <SubTitle>
+              <span>See </span>
+              <span>your </span>
+              <span>roots </span>
+              <span>take </span>
+              <span>place </span>
+              <span> <br/> </span>
+              <span>and </span>
+              <span>water </span>
+              <span>them </span>
+              <span>with </span>
+              <span>history </span>
+            </SubTitle>
       </HeaderContainer>
     </HeaderWrapper>
   )
