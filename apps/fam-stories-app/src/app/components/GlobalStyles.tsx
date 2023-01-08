@@ -16,13 +16,46 @@ export const InnerWrapper = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    padding-top: 12em;
     background-color: var(--color-lighterGreen);
     background-image: url(${brightrootsL});
     background-size: cover;
     background-attachment: scroll;
-    //border: 2px solid blue;
+    border: 2px solid blue;
+    z-index: 2;
+`
+export const HeaderWrapper = styled.div`
+    position: absolute;
+    left: -8em;
+    top: 4.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: fit-content;
+    width: 250%;
+    //border: solid yellow 2px;
+    z-index: 5;
 `
 
+export const HeaderContainer = styled.div`
+    position: absolute;
+    top: 2em;
+    left: 7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 26em;
+    height: 16em;
+    color: var(--color-white);
+    background-color: var(--color-lighterRed);
+    opacity: 0.9;
+    border-radius: 50%;
+    border: 2px dotted var(--color-white);
+    box-shadow: 3px 3px 10px grey;
+    z-index: 10;
+`
 export const TextWrapper = styled.div`
     display: block;
     width: 60%;
@@ -42,40 +75,6 @@ export const BackButton = styled.button`
     margin: 1em 1em 1em 0em;
     padding: 0.5em 0.65em;
     border-radius: 14px;
-    border: 1px solid var(--color-darkerBrown);
-    box-shadow: 3px 3px 3px grey;
-    background-color: var(--color-lighterRed);
-    color: var(--color-white);
-    width: fit-content;
-
-&:hover {
-    background-color: var(--color-white);
-    color: var(--color-darkerRed);
-    transition: 0.7s;
-}
-`
-export const EditButton = styled.button`
-    font-size: 1em;
-    margin: 1em 0em;
-    padding: 0.5em 0.65em;
-    border-radius: 14px;
-    border: 1px solid var(--color-darkerGreen);
-    box-shadow: 3px 3px 3px grey;
-    background-color: var(--color-green);
-    color: var(--color-white);
-    width: fit-content;
-
-&:hover {
-    background-color: var(--color-white);
-    color: var(--color-brown);
-    transition: 0.7s;
-}
-`
-export const AddButton = styled.button`
-    font-size: 1em;
-    margin: 0.75em;
-    padding: 0.5em 0.65em;
-    border-radius: 14px;
     border: 1px solid var(--color-darkerRed);
     box-shadow: 3px 3px 3px grey;
     background-color: var(--color-lighterRed);
@@ -84,7 +83,44 @@ export const AddButton = styled.button`
 
 &:hover {
     background-color: var(--color-white);
+    border: 1px solid var(--color-darkerRed);
     color: var(--color-darkerRed);
+    transition: 0.7s;
+}
+`
+export const AddButton = styled.button`
+    font-size: 1em;
+    margin: 0.75em;
+    padding: 0.5em 0.65em;
+    border-radius: 14px;
+    box-shadow: 3px 3px 3px grey;
+    background-color: var(--color-lighterRed);
+    border: 1px solid var(--color-darkerRed);
+    color: var(--color-white);
+    width: fit-content;
+
+&:hover {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-darkerRed);
+    color: var(--color-darkerRed);
+    transition: 0.7s;
+}
+`
+
+export const EditButton = styled.button`
+    font-size: 1em;
+    margin: 1em 0em;
+    padding: 0.5em 0.65em;
+    border-radius: 14px;
+    border: 1px solid var(--color-darkerGreen);
+    box-shadow: 3px 3px 3px grey;
+    background-color: var(--color-green);
+    color: var(--color-whiter);
+    width: fit-content;
+
+&:hover {
+    background-color: var(--color-white);
+    color: var(--color-brown);
     transition: 0.7s;
 }
 `
@@ -95,10 +131,10 @@ top: 30%;
 left: 50%;
 color: white;
 background-color: var(--color-green);
-border-radius: 50%;
-height: 75px;
-width: 75px;
-border: none;
+border: 2px solid var(--color-darkerGreen);
+border-radius: 40%;
+height: 95px;
+width: 95px;
 &:hover{
   color: var(--color-white);
   background-color: var(--color-green);
@@ -107,10 +143,11 @@ border: none;
 `
 export const Title = styled.h1`
     font-family: 'Cinzel Decorative', cursive;
-    font-weight: 400;
-    font-size: 4.5em;
+    font-weight: 600;
+    font-size: 5.5em;
     max-width: 40ch;
     text-align: center;
+    margin: 0em;
     transform: scale(0.64);
     animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
 
@@ -136,7 +173,9 @@ export const SubTitle = styled.h2`
     font-weight: 400;
     font-size: 2em;
     font-style: italic;
-    max-width: 40ch;
+    margin: 0.1em;
+    padding-left:2em;
+   // max-width: 40ch;
     text-align: center;
     transform: scale(0.64);
     animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
@@ -197,15 +236,12 @@ span:nth-child(11) {
   animation: fade-in 2s 3.6s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
 
-
-
 @keyframes fade-in {
   100% {
     opacity: 1;
     filter: blur(0);
   }
 }
-
 `
 export const ThirdTitle = styled.h3`
     font-family: 'Open Sans', sans-serif;

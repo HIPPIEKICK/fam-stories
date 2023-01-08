@@ -3,13 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Title, SubTitle } from './GlobalStyles';
-import brightrootsMini from '../images/brightrootsMini.jpg'
-import blobheader from '../images/blobheader.svg'
 
 export const Header = () => {
   return (
-    <HeaderWrapper>
-      <HeaderContainer>  
+    <HeaderContainer>
+        <HeaderWrapper>
             <Title> <span>FamStories</span></Title>
             <SubTitle>
               <span>See</span>
@@ -20,52 +18,49 @@ export const Header = () => {
               <span>and</span>
               <span>water</span>
               <span>them</span>
-              <br />
               <span>with</span>
               <span>history</span>
               </SubTitle>
-            <Picture>
-          <img src={blobheader} alt="Your SVG" />
-          </Picture>
+        </HeaderWrapper>    
       </HeaderContainer>
-    </HeaderWrapper>
   )
 };
 
-export const HeaderWrapper = styled.section`
-    position: relative;
-    right: 15%;
-    top: 1.5em;
+export const HeaderWrapper = styled.div`
+    position: absolute;
+    left: -8em;
+    top: 4.5em;
     display: flex;
     flex-direction: column;
-    //justify-content: center;
     align-items: center;
     text-align: center;
-    width: 45%;
-    height: 20em;
-    opacity: 0.9;
-    border: solid black 2px;
+    height: fit-content;
+    width: 250%;
+    //border: solid yellow 2px;
+    z-index: 5;
 `
 
 export const HeaderContainer = styled.div`
     position: absolute;
-    top: -1em;
+    top: 2em;
+    left: 7em;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    line-height: 1;
+    width: 26em;
+    height: 16em;
     color: var(--color-white);
     background-color: var(--color-lighterRed);
-    height: 12em;
+    opacity: 0.9;
     border-radius: 50%;
     border: 2px dotted var(--color-white);
     box-shadow: 3px 3px 10px grey;
+    z-index: 10;
 `
-export const Picture = styled.div`
-    position: relative;
-    background-color: var(--color-lighterRed);
-    background-image: url(${brightrootsMini});
-    background-size: cover;
-    `
+//export const Picture = styled.div`
+   // position: relative;
+    //background-color: var(--color-lighterRed);
+   // background-image: url(${brightrootsMini});
+    //background-size: cover;
+  //  `

@@ -19,7 +19,7 @@ export const TheTree = ({graphData} : {graphData:Graph }) => {
             const bckgDimensions = [textWidth, fontSize, ].map(n => n + fontSize * 0.8); // some padding
 
 
-            ctx.fillStyle = 'rgba(225, 132, 216, 0.8)';
+            ctx.fillStyle = '#4b2c0f';
             ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions);
 
             ctx.textAlign = 'center';

@@ -9,6 +9,7 @@ import { UserPage } from './pages/UserPage';
 import { ListFamilyMembers } from './components/ListFamilyMembers';
 import NotFound from './pages/NotFound';
 import { EditProfilePage } from './pages/EditProfilePage';
+import  { WelcomePage } from './pages/WelcomePage';
 
 export const App = () => {
   return (
@@ -16,12 +17,13 @@ export const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<RootsPage />} />
-            <Route path="/profilepage/:familyMemberId" element={<ProfilePage />} /> 
+            <Route path="/profilePage/:familyMemberId" element={<ProfilePage />} /> 
             <Route path="/editprofile/:familyMemberId" element={<EditProfilePage />} /> 
-            <Route path="/aboutpage" element={<AboutAppPage />} />
-            <Route path="/userpage" element={<UserPage />} />
+            <Route path="/about" element={<AboutAppPage />} />
+            <Route path="/user" element={<UserPage />} />
             <Route path="/listfamilymembers" element={<ListFamilyMembers />} />    
             <Route path="/404" element={<NotFound />} />
+            <Route path="/welcome" element={<WelcomePage />} />
           </Routes>
       </BrowserRouter>
       </Provider>

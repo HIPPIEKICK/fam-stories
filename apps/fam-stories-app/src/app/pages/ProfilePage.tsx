@@ -1,8 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import {  useAppSelector  } from "../store/store";
-import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, HeaderContainer, Title, HeaderWrapper } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
 
 export const ProfilePage = () => {
@@ -32,7 +31,11 @@ export const ProfilePage = () => {
             <OuterWrapper>
                 <InnerWrapper>
                 <Navbar />
-                    <Header />
+                <HeaderContainer>
+                    <HeaderWrapper>
+                        <Title> <span>{familyMember.name}</span></Title>
+                        </HeaderWrapper>    
+                    </HeaderContainer>
                     <TextWrapper>
                     <ThirdTitle>{familyMember.name}</ThirdTitle>
                     <BodyText>

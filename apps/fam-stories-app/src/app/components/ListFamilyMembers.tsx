@@ -3,9 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FamilyMember, hydrateFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
-import { Header } from './Header';
 import { Footer } from './Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, BodyText, TextWrapper } from "./GlobalStyles";
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, BodyText, TextWrapper, HeaderContainer, Title, HeaderWrapper, SubTitle } from "./GlobalStyles";
 import { Navbar } from "./NavBar";
 
 export const ListFamilyMembers = () => {
@@ -42,10 +41,14 @@ export const ListFamilyMembers = () => {
         <OuterWrapper>
             <InnerWrapper>
             <Navbar />
-                <Header />
+            <HeaderContainer>
+              <HeaderWrapper>
+                <Title><span>Family Members</span></Title>
+                  </HeaderWrapper>    
+                </HeaderContainer>
                 <TextWrapper>
-                <ThirdTitle> Here is a list of all your added relatives</ThirdTitle>
-                <BodyText>Hover over and click on the family member to go to there profile page</BodyText>   
+                <SubTitle> Here is a list of all your added relatives</SubTitle>
+                <ThirdTitle>Hover over and click on the family member to go to their profile page</ThirdTitle>   
                 <ListWrapper>
                 <FamList>{listOfFamilyMembers}</FamList> 
                 </ListWrapper>

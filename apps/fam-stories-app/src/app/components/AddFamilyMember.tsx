@@ -52,22 +52,22 @@ export const AddMemberForm = () => {
 
     return <MemberForm onSubmit={onSubmit}>
         {familyMemberId ? <ThirdTitle>Edit Family Member ({familyMemberId})</ThirdTitle> : <ThirdTitle>Add Family Member</ThirdTitle>}
-        <label htmlFor="name">Name</label>
+        <label aria-label="Name" htmlFor="name">Name</label>
         <input type="text"
             id="name"
             value={name}
             onChange={e => setName(e.target.value)} />
-        <label htmlFor="birthYear">Birth Year</label>
+        <label aria-label="Birth year" htmlFor="birthYear">Birth Year</label>
         <input type="text"
             id="birthYear"
             value={birthYear}
             onChange={e => setBirthYear(e.target.value)} />
-        <label htmlFor="name">Locality</label>
+        <label aria-label="Locality" htmlFor="name">Locality</label>
         <input type="text"
             id="locality"
             value={locality}
             onChange={e => setLocality(e.target.value)} />
-        <label htmlFor="name">Title</label>
+        <label aria-label="Title" htmlFor="name">Title</label>
         <input type="text"
             id="title"
             value={title}
@@ -83,10 +83,9 @@ export const MemberForm = styled.form`
     padding: 0.5em;
     width: 12em;
     background-color: var(--color-green);
-    border: 1px solid var(--color-lighterRed);
+    border: 1px solid var(--color-darkerGreen);
     font-family: 'Open Sans';
     font-weight: 400;
-    border-radius: 1em;
+    border-radius: 0.5em;
     box-shadow: 5px 5px 5px grey;
-
 `

@@ -5,20 +5,25 @@ import { BodyText } from "./GlobalStyles";
 export const Footer = () => {
     return (
       <FooterWrapper>
+        <FooterText>
           <BodyText> Made by Fanny Cardell at Technigo 2022/23 </BodyText>
+          </FooterText>  
       </FooterWrapper>
     )
   };
 
-const FooterWrapper = styled.section`
+const FooterText = styled.div`
+  padding-right: 5em;
+`
+
+export const FooterWrapper = styled.section`
     position: relative;
     display: flex;
     flex-direction: column;
     bottom: 0%;
     width: 100%;
     height: 10vh;
-    padding-right: 5em;
-    outline: dotted 2px var(--color-darkerRed);;
+    outline: dotted 2px var(--color-white);;
     border-radius: 2px;
     text-align: end;
     justify-content: end;

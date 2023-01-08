@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import { Header, Picture } from '../components/Header';
+import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import AddForm from '../components/AddForm';
 import { OuterWrapper, InnerWrapper, StartButton, ThirdTitle } from '../components/GlobalStyles';

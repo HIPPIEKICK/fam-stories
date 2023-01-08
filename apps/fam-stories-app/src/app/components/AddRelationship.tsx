@@ -40,15 +40,15 @@ export const AddRelationship = () => {
     });
 
     return <RelationForm onSubmit={onSubmit}>
-        <Label htmlFor="relationtype"></Label>
+        <Label aria-label="type of relationship" htmlFor="relationtype"></Label>
         <Select id="relationtype" 
                 value={relationtype} 
                 onChange={e => setRelationtype(e.target.value)}>{relationOptionlist}</Select>       
-        <Label htmlFor="toFamilyMemberId">to</Label>
+        <Label aria-label="familymember to" htmlFor="toFamilyMemberId">to</Label>
         <Select id="toFamilyMemberId" 
                 value={toFamilyMemberId} 
                 onChange={e => setToFamilyMemberId(e.target.value)}>{familymemberOptionList}</Select>
-        <AddButton disabled={toFamilyMemberId === '' || relationtype === ''} type="submit">Add relation</AddButton>
+        <AddButton disabled={toFamilyMemberId === '' || relationtype === ''} aria-label="add relation" type="submit">Add relation</AddButton>
     </RelationForm>
 };
 
@@ -57,14 +57,14 @@ export const RelationForm = styled.form`
     flex-direction: column;
     justify-content: center;
     padding: 0.5em;
-    margin-top: 0.5em;
+    margin: 0.5em;
     width: 12em;
     box-shadow: 5px 5px 5px grey;
     background-color: var(--color-green);
-    border: 1px solid var(--color-lighterRed);
+    border: 1px solid var(--color-darkerGreen);
     font-family: 'Open Sans';
     font-weight: 400;
-    border-radius: 1em;
+    border-radius: 0.5em;
 `
 
 export const Select = styled.select`

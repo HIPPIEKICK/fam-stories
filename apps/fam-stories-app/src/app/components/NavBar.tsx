@@ -7,9 +7,10 @@ export const Navbar = () => {
         <Nav>
             <ul>
                 <li><Link to="/">Home</Link> </li>
-                <li><NavLink to="/aboutpage">About</NavLink></li>
+                <li><NavLink to="/about">About</NavLink></li>
                 <li><NavLink to="/listfamilymembers">Family list</NavLink></li>
-                <li><NavLink to="/userpage">User/Log out</NavLink></li>
+                <li><NavLink to="/user">User/Log out</NavLink></li>
+                <li><NavLink to="/welcome">LogIn/Welcome</NavLink></li>
             </ul>
          </Nav>   
     )
@@ -17,12 +18,12 @@ export const Navbar = () => {
 
 export const Nav = styled.li`
     position: relative;
-    top: 4.5em;
-    left: 30%;
+    top: -8em;
+    left: 28%;
     align-items: center;
     color: var(--color-white);
     margin: 0.5em;
-    z-index: 3;
+    z-index: 10;
 
     li {
     float: left;
@@ -36,7 +37,7 @@ export const Nav = styled.li`
     background-color:var(--color-white);
     border-radius: 12px;
     font-family: 'Open Sans';
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: 3;
   }
 

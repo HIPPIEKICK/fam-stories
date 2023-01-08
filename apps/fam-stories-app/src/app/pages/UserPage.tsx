@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, AddButton, TextWrapper } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, AddButton, TextWrapper, HeaderContainer, Title, HeaderWrapper } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
 
 export const UserPage = () => {
@@ -11,14 +11,18 @@ export const UserPage = () => {
     navigate('/');
   }
   const onLogOutClick = () => {
-    navigate('/userpage');
+    navigate('/user');
   }
 
   return (
     <OuterWrapper>
         <InnerWrapper>
-        <Navbar />
-          <Header />
+          <Navbar />
+          <HeaderContainer>
+            <HeaderWrapper>
+                <Title> <span>User page</span></Title>
+              </HeaderWrapper>                  
+            </HeaderContainer>
             <TextWrapper>
             <ThirdTitle>Here is some info about the user or a logg out link/page</ThirdTitle>
             <BackButton type="button" onClick={onHomeButtonClick}>Return to Home Page</BackButton>
