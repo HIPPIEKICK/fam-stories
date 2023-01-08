@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { Title, SubTitle } from './GlobalStyles';
 import brightrootsMini from '../images/brightrootsMini.jpg'
+import blobheader from '../images/blobheader.svg'
 
 export const Header = () => {
   return (
@@ -22,7 +23,10 @@ export const Header = () => {
               <br />
               <span>with</span>
               <span>history</span>
-            </SubTitle>
+              </SubTitle>
+            <Picture>
+          <img src={blobheader} alt="Your SVG" />
+          </Picture>
       </HeaderContainer>
     </HeaderWrapper>
   )
@@ -56,7 +60,7 @@ export const HeaderContainer = styled.div`
     background-color: var(--color-lighterRed);
     height: 12em;
     border-radius: 50%;
-    border: 2px dotted var(--color-darkerRed);
+    border: 2px dotted var(--color-white);
     box-shadow: 3px 3px 10px grey;
 `
 export const Picture = styled.div`

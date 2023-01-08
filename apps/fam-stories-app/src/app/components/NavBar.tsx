@@ -17,8 +17,8 @@ export const Navbar = () => {
 
 export const Nav = styled.li`
     position: relative;
-    top: 3em;
-    right: -26em;
+    top: 4.5em;
+    left: 30%;
     align-items: center;
     color: var(--color-white);
     margin: 0.5em;
@@ -34,9 +34,9 @@ export const Nav = styled.li`
     text-decoration: none;
     color: var(--color-black);
     background-color:var(--color-white);
-    border-radius: 8px;
+    border-radius: 12px;
     font-family: 'Open Sans';
-    opacity: 0.7;
+    opacity: 0.8;
     z-index: 3;
   }
 

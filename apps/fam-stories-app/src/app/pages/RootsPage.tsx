@@ -43,7 +43,7 @@ export const RootWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: 80%;
   height: fit-content;
   //border: 4px solid purple;
   margin: 4% 0em;
