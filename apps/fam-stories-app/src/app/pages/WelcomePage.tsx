@@ -13,9 +13,7 @@ export const WelcomePage = () => {
     navigate('/');
   }
   return (
-    
     <OuterWrapper>
-      <Navbar />
           <ClonedWrapper>
             <TextContainer>
             <TitleVar>Welcome to</TitleVar>
@@ -76,8 +74,8 @@ const ClonedWrapper = styled(TextWrapper)`
   position: relative;
   width: 100%;
   height: fit-content;
-  padding: 5em;
-  margin: 0em;
+  padding:0.5em;
+  margin-bottom: 5em;
   background-color: var(--color-black);
   //border: 2px solid red;
   z-index: 5;
@@ -85,7 +83,8 @@ const ClonedWrapper = styled(TextWrapper)`
 
 const ClonedFamForm = styled(EditFamForm)`
   position: absolute;
-  bottom: 15%;
+  flex-direction: column;
+  bottom: 8%;
   right: 30%;
   width: 6em;
   padding: 1.5em;
