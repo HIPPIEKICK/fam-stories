@@ -2,19 +2,24 @@ import React from 'react';
 import { Footer } from '../components/Footer';
 import { AddMemberForm } from '../components/AddFamilyMember';
 import { AddRelationship } from '../components/AddRelationship';
-import { useAppSelector } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from 'styled-components';
-import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, HeaderContainer, HeaderWrapper, Title, BodyText, RelList } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, HeaderContainer, HeaderWrapper, Title, BodyText, RelList, EditButton } from '../components/GlobalStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/NavBar';
 
 export const EditProfilePage = () => {
   const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
   const { familyMemberId } = useParams();
-
   const familyMember = familyMembers.find((familyMember) => familyMember.id === familyMemberId);
 
-    const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const onRemoveClick = (e) => {
+    dispatch(tasks.actions.removeItem(e))
+  }
+
+  const navigate = useNavigate();
     const onHomeButtonClick = () => {
       navigate('/main');
     }
@@ -25,15 +30,17 @@ export const EditProfilePage = () => {
       navigate ('/listfamilymembers');
     }
 
+
     if(!familyMember) {
       return <BodyText>Family member not found</BodyText>
   }
 
     const listOfRelationships =  familyMember.relationships.map((relationship) => {
-      const relationMember = familyMembers.find((familyMember) => familyMember.id === relationship.familyMemberId) 
-      return <div> is {relationship.relationtype} to {relationMember?.name} </div>
+    const relationMember = familyMembers.find((familyMember) => familyMember.id === relationship.familyMemberId) 
+      return <div> is {relationship.relationtype} to {relationMember?.name} <button type="button"
+      onClick={() => onRemoveClick(relationship)}></button></div>
   });
-  //addera delete buttons!
+  
   return (
     <OuterWrapper>
         <InnerWrapper>

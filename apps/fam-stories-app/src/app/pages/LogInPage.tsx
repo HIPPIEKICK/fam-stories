@@ -1,18 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, TextWrapper, Title, SubTitle, AddButton } from '../components/GlobalStyles';
-import { Navbar } from '../components/NavBar';
+import { OuterWrapper, TextWrapper, Title, SubTitle } from '../components/GlobalStyles';
 import styled from 'styled-components';
 import famphotooldS from '../images/famphotooldS.jpg'
 import { EditFamForm } from './EditProfilePage';
 import LogIn from '../components/Login';
 
 export const LogInPage = () => {
-  const navigate = useNavigate();
-  const onLogInClick = () => {
-    navigate('/');
-  }
+  
   return (
     <OuterWrapper>
         <ClonedWrapper>
@@ -52,13 +47,13 @@ const TextContainer = styled(TextWrapper)`
   align-items:center;
   left: 20%;
   top: 20%;
-  //border: 2px solid blue;
   width: 60%;
   z-index: 20;
   padding: 0em;
   margin: 0em;
   background-color: transparent;
   color: var(--color-white);
+  //border: 2px solid blue;
 `
 
 const ClonedWrapper = styled(TextWrapper)`
@@ -68,21 +63,21 @@ const ClonedWrapper = styled(TextWrapper)`
   padding:0.5em;
   margin-bottom: 5em;
   background-color: var(--color-black);
-  //border: 2px solid red;
+  //border: 2px solid blue;
   z-index: 5;
 `
 
 export const ClonedFamForm = styled(EditFamForm)`
-  position: absolute;
   flex-direction: column;
   bottom: 8%;
   right: 30%;
-  width: 6em;
+  width: 10em;
   padding: 1.5em;
   border-radius: 0.5em;
   box-shadow: 3px 3px 3px grey;
   z-index: 12;
   background-color: var(--color-white);
+  border: 2px solid blue;
 `
 
 const WelcomePicture = styled.div`

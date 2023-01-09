@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { addRelationshipToMember, FamilyMember, listOfRelationShipTypes } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
-import { BodyText, AddButton } from "./GlobalStyles";
+import { BodyText, AddButton, Label } from "./GlobalStyles";
 import { useParams } from 'react-router-dom';
 
 export const AddRelationship = () => {
@@ -71,9 +71,4 @@ export const Select = styled.select`
     background-color: var(--color-white);
     margin: 0.75em;
     border-radius: 0.25em;
-`
-
-export const Label = styled.label`
-    display: inline-block;
-    margin: 0.3em;
 `

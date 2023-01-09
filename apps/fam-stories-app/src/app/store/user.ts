@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const user = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState: {
     error: null,
@@ -9,19 +9,19 @@ const user = createSlice({
     userId: null,
   }, 
   reducers: {
-    setError: (state, action) => {
-      state.error = action.payload
+    setError: (store, action) => {
+      store.error = action.payload;
     },
-    setUsername: (state, action) => {
-      state.username = action.payload
+    setUsername: (store, action) => {
+      store.username = action.payload;
     },
-    setAccessToken: (state, action) => {
-      state.accessToken = action.payload
+    setAccessToken: (store, action) => {
+      store.accessToken = action.payload;
     },
-    setUserId: (state, action) => {
-      state.userId = action.payload
+    setUserId: (store, action) => {
+      store.userId = action.payload;
     }
   }
-})
+});
 
-export default user;
+export default userSlice;

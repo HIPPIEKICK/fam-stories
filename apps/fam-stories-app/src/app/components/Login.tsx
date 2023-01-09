@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector, batch} from "react-redux";
+import { batch} from "react-redux";
+import { useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/utils";
 import user from "../store/user";
-import { AddButton, ThirdTitle } from "./GlobalStyles";
-import { ClonedFamForm } from "../pages/LogInPage";
+import { AddButton, BodyText, Input, Label, ThirdTitle } from "./GlobalStyles";
+import { BtnWrapper, EditFamForm } from "../pages/EditProfilePage";
 
 const LogIn = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [mode, setMode] = useState("login")
   //const [loginError, setLoginError] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const accessToken = useSelector((state) => store.user.accessToken)
-  const error = useSelector((state) => store.user.error)
+  const accessToken = useAppSelector((store) => store.user.accessToken)
+  const error = useAppSelector((store) => store.user.error)
   console.log(error)
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const LogIn = () => {
             dispatch(user.actions.setError(null))
           })
         } else {
+          alert("error, it seams that you haven't registerd yet")
           batch(() => {
             dispatch(user.actions.setUsername(null))
             dispatch(user.actions.setAccessToken(null))
@@ -57,62 +59,70 @@ const LogIn = () => {
   }
 
   return (
-    <FormSection>
-      {mode === "login" && <ThirdTitle>Log in</ThirdTitle>}
-      {mode === "register" && <ThirdTitle>Register</ThirdTitle>}
+    <LoginForm>
+      <ThirdTitle>{mode === "register" && "Register" || "Log in"}</ThirdTitle>
       <Form onSubmit={onFormSubmit}>
-          <label htmlFor="username">Username</label>
-          <input 
-            type="text"
-            id="username"
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)} />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} />
-          <ClonedFamForm>
+          <Label htmlFor="username">Username</Label>
+          <Input type="text" id="username" placeholder="username" value={username}
+                onChange={(e) => setUsername(e.target.value)} />
+          <Label htmlFor="password">Password</Label>
+          <Input type="password" id="password" placeholder="password" value={password}
+                onChange={(e) => setPassword(e.target.value)} />
+      </Form>
+          <InfoMsg>
+            {mode === "register" && password.length < 8 ? 'minimum 8 characters required' : ''}
+          </InfoMsg>
+          <Bwrapper>
             {mode === "login" && <AddButton type="submit">Log in</AddButton>}
             {mode === "register" && <AddButton type="submit">Register</AddButton>}
-          </ClonedFamForm>
-      </Form>
-      <div>
-        <label htmlFor="register">Register</label>
-        <input type="radio" id="register" checked={mode === "register"} onChange={() => setMode("register")} />
-        <label htmlFor="login">Login</label>
-        <input type="radio" id="login" checked={mode === "login"} onChange={() => setMode("login")} />
-      </div>
-    </FormSection>
+          </Bwrapper>
+          <Label>
+            <ModeLabel htmlFor="register">{mode === "register" ? "" : "No acount? Register here" }
+            <Input type="radio" id="register" name="register" checked={mode === "register"} onChange={()=> setMode("register")}/>
+            </ModeLabel>
+            <ModeLabel htmlFor="login">{mode === "login" ? "" : "Log in now" }
+            <Input type="radio" id="login" checked={mode === "login" } onChange={()=> setMode("login")}/> 
+            </ModeLabel>
+          </Label>    
+    </LoginForm>
   )
 }
 export default LogIn
 
-export const FormSection = styled.section`
-  background-color: pink;
-  padding: 50px;
-  box-sizing: border-box;
-  border-radius: 30px;
+export const LoginForm = styled(EditFamForm)`
+  position: absolute;
+  bottom: -3em;
+  right: 5em;
+  padding: 1em;
+  width: 16em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  h1 {
-    font-weight: 700;
-    font-size: 45;
-    margin-bottom: 20px;
-  }
+  box-shadow: none;
+  border: 2px dotted var(--color-darkerRed);
+  z-index: 20;
 `
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 5px;
-  input {
-    padding: 15px;
-    margin: 5px;
-    border-radius: 10px;
-    border: none;
-  }
+  align-items: flex-start;
+  //border: 2px solid green;
+`
+
+export const InfoMsg = styled(BodyText)`
+color: #4b810b;
+font-style: italic;
+margin-bottom: 1.5em;
+//border: 2px solid green;
+`
+export const ModeLabel = styled.label`
+color:var(--color-darkerRed);
+font-size: 1.2rem;
+font-weight: 600;
+` 
+const Bwrapper = styled.div`
+  display: block;
+  align-items: flex-end;
+  justify-content: center;
+  //border: 2px solid green;
 `

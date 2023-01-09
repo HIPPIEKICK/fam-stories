@@ -89,5 +89,5 @@ export const familyMembersSlice = createSlice({
       }
     },
   })
-  
-  export const { addFamilyMember, hydrateFamilyMember, editFamilyMember, addRelationshipToMember } = familyMembersSlice.actions
+
+export const { addFamilyMember, hydrateFamilyMember, editFamilyMember, addRelationshipToMember } = familyMembersSlice.actions;

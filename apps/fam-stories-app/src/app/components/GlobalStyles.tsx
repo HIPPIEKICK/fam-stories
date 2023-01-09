@@ -82,6 +82,22 @@ export const RelList = styled.div`
     border-radius: 0.25em;
     box-shadow: 2px 2px 2px grey;
 `
+export const Label = styled.label`
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: 'Open sans';
+    margin: 5px;
+    //border:2px solid red;
+`
+export const Input = styled.input`
+    font-family: 'Open sans';
+    padding: 0.75em;
+    margin: 5px;
+    border-radius: 0.5em;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-black);
+`
 
 export const BackButton = styled.button`
     position: relative;

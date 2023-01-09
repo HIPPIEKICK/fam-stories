@@ -10,7 +10,6 @@ import { ListFamilyMembers } from './components/ListFamilyMembers';
 import NotFound from './pages/NotFound';
 import { EditProfilePage } from './pages/EditProfilePage';
 import  { LogInPage } from './pages/LogInPage';
-//import user from './store/user'
 
 export const App = () => {
   return (
@@ -32,11 +31,3 @@ export const App = () => {
 }
 
 export default App;
-
-
-/* 
-    <Route path="*" element={<Navigate to="/404" replace />} />
-
-    :id ska läggas till på /ProfilePage/ 
-    samt useParams för att göra nya individuella sidor
-*/

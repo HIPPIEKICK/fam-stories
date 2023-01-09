@@ -4,7 +4,7 @@ import { FamilyMember, hydrateFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { Footer } from './Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, BodyText, TextWrapper, HeaderContainer, Title, HeaderWrapper, SubTitle } from "./GlobalStyles";
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, TextWrapper, HeaderContainer, Title, HeaderWrapper, SubTitle } from "./GlobalStyles";
 import { Navbar } from "./NavBar";
 
 export const ListFamilyMembers = () => {

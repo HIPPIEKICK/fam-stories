@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import AddForm from '../components/AddForm';
-import { OuterWrapper, InnerWrapper, StartButton, ThirdTitle } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, StartButton, ThirdTitle, SubTitle } from '../components/GlobalStyles';
 import { useAppSelector, useAppDispatch } from "../store/store";
 import { hydrateFamilyMember } from '../store/familyMembersSlice';
 import { TheTree } from '../components/TheTree';
@@ -25,7 +25,7 @@ export const RootsPage = () => {
         <Navbar />
         <Header />
         <RootWrapper>
-          <ThirdTitle>Fill in the form and let the graph make the roots </ThirdTitle>
+          <SubTitle>Fill in the form and let the graph make the roots </SubTitle>
               <AddForm />
               <RootContainer>
               <StartButton>ME</StartButton>

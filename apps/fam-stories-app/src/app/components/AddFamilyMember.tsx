@@ -1,7 +1,7 @@
 import { FormEvent, useState, useEffect } from "react";
 import { addFamilyMember, editFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { AddButton, ThirdTitle } from "./GlobalStyles";
+import { AddButton, Input, Label, ThirdTitle } from "./GlobalStyles";
 import styled from "styled-components";
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -52,23 +52,23 @@ export const AddMemberForm = () => {
 
     return <MemberForm onSubmit={onSubmit}>
         {familyMemberId ? <ThirdTitle>Edit Family Member ({familyMemberId})</ThirdTitle> : <ThirdTitle>Add Family Member</ThirdTitle>}
-        <label aria-label="Name" htmlFor="name">Name</label>
-        <input type="text"
+        <Label aria-label="Name" htmlFor="name">Name</Label>
+        <Input type="text"
             id="name"
             value={name}
             onChange={e => setName(e.target.value)} />
-        <label aria-label="Birth year" htmlFor="birthYear">Birth Year</label>
-        <input type="text"
+        <Label aria-label="Birth year" htmlFor="birthYear">Birth Year</Label>
+        <Input type="text"
             id="birthYear"
             value={birthYear}
             onChange={e => setBirthYear(e.target.value)} />
-        <label aria-label="Locality" htmlFor="name">Locality</label>
-        <input type="text"
+        <Label aria-label="Locality" htmlFor="name">Locality</Label>
+        <Input type="text"
             id="locality"
             value={locality}
             onChange={e => setLocality(e.target.value)} />
-        <label aria-label="Title" htmlFor="name">Title</label>
-        <input type="text"
+        <Label aria-label="Title" htmlFor="name">Title</Label>
+        <Input type="text"
             id="title"
             value={title}
             onChange={e => setTitle(e.target.value)} />
