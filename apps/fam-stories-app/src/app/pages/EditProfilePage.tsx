@@ -4,7 +4,7 @@ import { AddMemberForm } from '../components/AddFamilyMember';
 import { AddRelationship } from '../components/AddRelationship';
 import { useAppSelector } from "../store/store";
 import styled from 'styled-components';
-import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, HeaderContainer, HeaderWrapper, Title, BodyText } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, HeaderContainer, HeaderWrapper, Title, BodyText, RelList } from '../components/GlobalStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/NavBar';
 
@@ -16,10 +16,10 @@ export const EditProfilePage = () => {
 
     const navigate = useNavigate();
     const onHomeButtonClick = () => {
-      navigate('/');
+      navigate('/main');
     }
     const onAddMemberClick = () => {
-      navigate ('/');
+      navigate ('/main');
     }
     const onToFamListClick = () => {
       navigate ('/listfamilymembers');
@@ -84,21 +84,4 @@ export const BtnWrapper = styled.div`
   display: flex;
   flex-direction: row;
   padding-top: 1em;
-`
-
-export const RelList = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 0.5em;
-    margin:0.25em;
-    width: fit-content;
-    background-color: var(--color-lighterRed);
-    border: 1px solid var(--color-darkerRed);
-    font-family: 'Open Sans';
-    font-weight: 400;
-    font-size: 1em;
-    line-height: 1.6;
-    color: var(--color-white);
-    border-radius: 0.25em;
-    box-shadow: 2px 2px 2px grey;
 `

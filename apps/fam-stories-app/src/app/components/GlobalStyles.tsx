@@ -66,6 +66,22 @@ export const TextWrapper = styled.div`
     background-color: var(--color-white);
     opacity: 0.9;
 `
+export const RelList = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin:0.25em;
+    width: fit-content;
+    background-color: var(--color-lighterRed);
+    border: 1px solid var(--color-darkerRed);
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.6;
+    color: var(--color-white);
+    border-radius: 0.25em;
+    box-shadow: 2px 2px 2px grey;
+`
 
 export const BackButton = styled.button`
     position: relative;

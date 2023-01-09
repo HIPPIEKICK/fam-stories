@@ -6,40 +6,31 @@ import { Navbar } from '../components/NavBar';
 import styled from 'styled-components';
 import famphotooldS from '../images/famphotooldS.jpg'
 import { EditFamForm } from './EditProfilePage';
+import LogIn from '../components/Login';
 
-export const WelcomePage = () => {
+export const LogInPage = () => {
   const navigate = useNavigate();
   const onLogInClick = () => {
     navigate('/');
   }
   return (
     <OuterWrapper>
-          <ClonedWrapper>
+        <ClonedWrapper>
             <TextContainer>
-            <TitleVar>Welcome to</TitleVar>
-            <Title1>FamStories</Title1>
-            <SubTitle>
-              <span>See</span>
-              <span>your</span>
-              <span>roots</span>
-              <span>take</span>
-              <span>place</span>
-              <span>and</span>
-              <span>water</span>
-              <span>them</span>
-              <span>with</span>
-              <span>history</span>
+                <TitleVar>Welcome to</TitleVar>
+                <Title1>FamStories</Title1>
+              <SubTitle>
+                <span>See</span><span>your</span><span>roots</span><span>take</span>
+                <span>place</span><span>and</span><span>water</span><span>them</span>
+                <span>with</span><span>history</span>
               </SubTitle> 
-              </TextContainer>
+            </TextContainer>
             <WelcomePicture>
                 <img src={famphotooldS} alt="Family Photography" />
             </WelcomePicture>
-            <ClonedFamForm>
-            <AddButton>Log in</AddButton>
-            <AddButton>Register</AddButton>
-            </ClonedFamForm>
-            </ClonedWrapper>
-            <Footer />
+            <LogIn />
+          </ClonedWrapper>
+        <Footer />
     </OuterWrapper>
  );
 }
@@ -81,7 +72,7 @@ const ClonedWrapper = styled(TextWrapper)`
   z-index: 5;
 `
 
-const ClonedFamForm = styled(EditFamForm)`
+export const ClonedFamForm = styled(EditFamForm)`
   position: absolute;
   flex-direction: column;
   bottom: 8%;

@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import {  useAppSelector  } from "../store/store";
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, HeaderContainer, Title, HeaderWrapper } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, HeaderContainer, Title, HeaderWrapper, RelList } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
 
 export const ProfilePage = () => {
@@ -12,7 +12,7 @@ export const ProfilePage = () => {
     
     const navigate = useNavigate();
     const onHomeButtonClick = () => {
-        navigate('/');
+        navigate('/main');
     }
     const onToFamListClick = () => {
         navigate ('/listfamilymembers');
@@ -43,7 +43,7 @@ export const ProfilePage = () => {
                        Lives: {familyMember.locality} <br />
                         {familyMember.title} <br />
                     </BodyText>
-                    <BodyText>{listOfRelationships} <br /> </BodyText>
+                    <RelList>{listOfRelationships}</RelList>
                        
                     <BodyText>
                         Här är en sida för att addera information om varje familjemedlem om det finns. <br />

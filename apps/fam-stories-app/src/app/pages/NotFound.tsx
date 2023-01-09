@@ -8,7 +8,7 @@ import { Navbar } from '../components/NavBar';
 const NotFound = () => {
   const navigate = useNavigate();
   const onHomeButtonClick = () => {
-    navigate('/');
+    navigate('/main');
   }
   return (
     <OuterWrapper>

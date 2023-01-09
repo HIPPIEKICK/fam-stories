@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, AddButton, TextWrapper, HeaderContainer, Title, HeaderWrapper } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
@@ -8,7 +7,7 @@ import { Navbar } from '../components/NavBar';
 export const UserPage = () => {
   const navigate = useNavigate();
   const onHomeButtonClick = () => {
-    navigate('/');
+    navigate('/main');
   }
   const onLogOutClick = () => {
     navigate('/user');

@@ -17,7 +17,7 @@ export const ListFamilyMembers = () => {
    
     const navigate = useNavigate();
     const onHomeButtonClick = () => {
-    navigate('/');
+    navigate('/main');
   }
 
     const listOfFamilyMembers = familyMembers.map((familyMember) => {

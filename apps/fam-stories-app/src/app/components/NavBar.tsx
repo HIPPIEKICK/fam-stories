@@ -1,16 +1,32 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Hamburger from 'hamburger-react';
 
 export const Navbar = () => {
+  const [isOpen, setOpen] = useState(false)
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.removeItem('accessToken')
+    navigate("/welcome")
+  }  
+  
     return(
         <Nav>
+          <HamburgerBtn>
+            <Hamburger
+              label="Show menu"
+              rounded 
+              toggled={isOpen} toggle={setOpen}
+            />
+          </HamburgerBtn>
             <ul>
-                <li><Link to="/">Home</Link> </li>
+                <li><Link to="/main">Home</Link> </li>
                 <li><NavLink to="/about">About</NavLink></li>
                 <li><NavLink to="/listfamilymembers">Family list</NavLink></li>
                 <li><NavLink to="/user">User/Log out</NavLink></li>
-                <li><NavLink to="/welcome">LogIn/Welcome</NavLink></li>
+                <li><NavLink to="/">LogIn/Welcome</NavLink></li>
             </ul>
          </Nav>   
     )
@@ -53,4 +69,10 @@ export const Nav = styled.li`
     text-decoration: underline;
     color: var(--color-black);
 }
+`
+
+export const HamburgerBtn = styled.div`
+  display: none;
+  color: var(--color-white); 
+  margin: 10px;
 `

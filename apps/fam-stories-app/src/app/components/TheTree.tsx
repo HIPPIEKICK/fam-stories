@@ -13,7 +13,7 @@ export const TheTree = ({graphData} : {graphData:Graph }) => {
          
 
             const label = node.name;
-            const fontSize = 20/globalScale;
+            const fontSize = 12/globalScale;
             ctx.font = `${fontSize}px Open Sans`;
             const textWidth = ctx.measureText(label).width;
             const bckgDimensions = [textWidth, fontSize, ].map(n => n + fontSize * 0.8); // some padding

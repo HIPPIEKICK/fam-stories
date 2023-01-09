@@ -48,7 +48,7 @@ export const RootWrapper = styled.div`
   //border: 4px solid purple;
   margin: 4% 0em;
   padding: 3em 1em;
-  background-color: var(--color-white);
+  background-color: var(--color-lighterRed);
   opacity: 0.9;
   border-radius: 0.3em;
 `
@@ -59,6 +59,6 @@ export const RootContainer = styled.div`
   width: 90%;
   border-radius: 0.3em;
   margin: 2em 0em;
-  background-color: var(--color-red);
+  background-color: var(--color-white);
 `
 

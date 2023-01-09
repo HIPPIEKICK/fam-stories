@@ -1,7 +1,7 @@
 import { FormEvent, useState, useEffect } from "react";
 import { addFamilyMember, editFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { EditButton, AddButton, ThirdTitle } from "./GlobalStyles";
+import { AddButton, ThirdTitle } from "./GlobalStyles";
 import styled from "styled-components";
 import { useNavigate, useParams } from 'react-router-dom';
 

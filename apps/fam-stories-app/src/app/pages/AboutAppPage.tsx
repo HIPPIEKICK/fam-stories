@@ -7,7 +7,7 @@ import { Navbar } from '../components/NavBar';
 export const AboutAppPage = () => {
     const navigate = useNavigate();
     const onHomeButtonClick = () => {
-      navigate('/');
+      navigate('/main');
     }
     return (
         <OuterWrapper>
