@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { AddMemberForm } from "./AddFamilyMember";
 import { AddRelationship } from "./AddRelationship";
 import styled from "styled-components";
+import { Devices } from './GlobalStyles';
 
 const AddForm = () => {
     const [visible, setVisible] = useState(false);
@@ -32,9 +33,14 @@ export default AddForm;
 
 export const FormWrapper = styled.div`
     position: absolute;
-    top: 5%;
-    right: 15%;
+    top: 11%;
+    left: 5%;
     z-index: 5;
+
+@media ${Devices.laptop} {
+    top: 5%;
+    left: 3%;
+    }
 `
 
 export const ShowButton = styled.button`
@@ -51,6 +57,15 @@ export const ShowButton = styled.button`
     border: 2px solid var(--color-green);
     z-index: 5;
     }
+
+@media ${Devices.laptop} {
+    height: 5em;
+    width: 5em;
+    }
+@media ${Devices.desktop} {
+    height: 7em;
+    width: 7em;
+    } 
 `
 export const AddFamForm = styled.div`
     position: absolute;

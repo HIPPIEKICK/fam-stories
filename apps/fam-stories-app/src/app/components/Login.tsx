@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/utils";
 import user from "../store/user";
-import { AddButton, BodyText, Input, Label, ThirdTitle } from "./GlobalStyles";
-import { BtnWrapper, EditFamForm } from "../pages/EditProfilePage";
+import { AddButton, BodyText, Devices, Input, Label, ThirdTitle } from "./GlobalStyles";
+import { EditFamForm } from "../pages/EditProfilePage";
 
 const LogIn = () => {
   const [username, setUsername] = useState('')
@@ -90,17 +90,35 @@ const LogIn = () => {
 export default LogIn
 
 export const LoginForm = styled(EditFamForm)`
-  position: absolute;
-  bottom: -3em;
-  right: 5em;
-  padding: 1em;
+  position: relative;
+  bottom: 3.5em;
+  left: 2.5em;
+  padding: 0em 1em;
   width: 16em;
+  height: 26em;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: none;
   border: 2px dotted var(--color-darkerRed);
-  z-index: 20;
+  opacity: 0.95;
+  z-index: 15;
+
+@media ${Devices.tablet} {
+    bottom: 10em;
+    left: 8em;
+    margin: 0em;
+    }
+    
+@media ${Devices.laptop} {
+    bottom: 6em;
+    left: 65%;
+    }    
+
+@media ${Devices.desktop} {
+    bottom: 20em;
+    left: 110%;
+    }   
 `
 export const Form = styled.form`
   display: flex;
@@ -110,15 +128,16 @@ export const Form = styled.form`
 `
 
 export const InfoMsg = styled(BodyText)`
-color: #4b810b;
+color: #57930c;
 font-style: italic;
-margin-bottom: 1.5em;
+margin-bottom: 0.25em;
 //border: 2px solid green;
 `
 export const ModeLabel = styled.label`
 color:var(--color-darkerRed);
-font-size: 1.2rem;
+font-size: 1.1rem;
 font-weight: 600;
+//border: 2px solid green;
 ` 
 const Bwrapper = styled.div`
   display: block;

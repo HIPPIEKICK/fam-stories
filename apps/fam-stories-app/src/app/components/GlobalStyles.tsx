@@ -1,6 +1,18 @@
 import styled from "styled-components/macro";
 import brightrootsL from '../images/brightrootsL.jpg'
 
+const sizes = {
+  tablet: '668px',
+  laptop: '1024px',
+  desktop: '2560px'
+};
+
+export const Devices = {
+  tablet: `(min-width: ${sizes.tablet})`,
+  laptop: `(min-width: ${sizes.laptop})`,
+  desktop: `(min-width: ${sizes.desktop})`
+};
+
 export const OuterWrapper = styled.section`
     display: flex;
     flex-direction: column;
@@ -60,18 +72,28 @@ export const TextWrapper = styled.div`
     display: block;
     width: 60%;
     height: fit-content;
-    padding: 3%;
-    margin: 4%;
+    padding: 3em;
+    margin: 4em;
     border-radius: 0.3em;
     background-color: var(--color-white);
     opacity: 0.9;
+
+  @media ${Devices.tablet} {
+    width: 65%;
+    }
+
+  @media ${Devices.desktop} {
+    width: 55%;
+    padding: 5em;
+    max-width: 100ch;
+    } 
 `
 export const RelList = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0.5em;
-    margin:0.25em;
-    width: fit-content;
+    padding: 0.75em 1.5em 0.75em 0.75em;
+    margin: 0.5em;
+    width: 90%;
     background-color: var(--color-lighterRed);
     border: 1px solid var(--color-darkerRed);
     font-family: 'Open Sans';
@@ -81,6 +103,16 @@ export const RelList = styled.div`
     color: var(--color-white);
     border-radius: 0.25em;
     box-shadow: 2px 2px 2px grey;
+
+  @media ${Devices.tablet} {
+      width: 70%;
+    }
+  @media ${Devices.laptop} {
+    width: 60%;
+    } 
+  @media ${Devices.laptop} {
+    width: 50%;
+    }  
 `
 export const Label = styled.label`
     display: flex;
@@ -160,11 +192,11 @@ export const EditButton = styled.button`
 export const StartButton = styled.button`
 position: absolute;
 top: 30%;
-left: 50%;
+left: 40%;
 color: white;
 background-color: var(--color-green);
 border: 2px solid var(--color-darkerGreen);
-border-radius: 40%;
+border-radius: 30%;
 height: 95px;
 width: 95px;
 &:hover{
@@ -172,29 +204,51 @@ width: 95px;
   background-color: var(--color-green);
   transition: 0.7s;
 }
+@media ${Devices.tablet} {
+  top: 30%;
+  left: 42%;
+  }
+@media ${Devices.laptop} {
+  top: 20%;
+  left: 48%;
+  height: 75px;
+  width: 75px;
+  } 
+@media ${Devices.laptop} {
+  height: 85px;
+  width: 85px;
+  } 
 `
 export const Title = styled.h1`
     font-family: 'Cinzel Decorative', cursive;
     font-weight: 600;
-    font-size: 5.5em;
+    font-size: 3.25em;
     max-width: 40ch;
     text-align: center;
     margin: 0em;
     transform: scale(0.64);
     animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
 
+@media ${Devices.tablet} {
+    font-size: 3.75em;
+    }
+@media ${Devices.laptop} {
+    font-size: 4.5em;
+    } 
+@media ${Devices.desktop} {
+    font-size: 6em;
+    }     
+    
 @keyframes scale {
   100% {
     transform: scale(2);
   }
 }
-
 span {
   display: inline-block;
   opacity: 0;
   filter: blur(10px);
 }
-
 span:nth-child(1) {
   animation: fade-in 1.5s 0.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
@@ -203,14 +257,28 @@ span:nth-child(1) {
 export const SubTitle = styled.h2`
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 2em;
+    font-size: 1.5em;
     font-style: italic;
     margin: 0.1em;
-    padding-left:2em;
-   // max-width: 40ch;
+    padding-left: 0em;
+    max-width: 30ch;
     text-align: center;
     transform: scale(0.64);
     animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+  
+@media ${Devices.tablet} {
+    font-size: 1.5em;
+    text-align: start;
+    }
+@media ${Devices.laptop} {
+    font-size: 1.75em;
+    margin-bottom: 1em;
+    max-width: 50ch;
+    }    
+@media ${Devices.desktop} {
+    font-size: 2.25em;
+
+    }    
 
 @keyframes scale {
   100% {
@@ -220,50 +288,40 @@ export const SubTitle = styled.h2`
 
 span {
   display: inline-block;
-  opacity: 0;
+  opacity: 1;
   filter: blur(4px);
   margin: 4px;
 }
-
 span:nth-child(1) {
   animation: fade-in 2s 0.6s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
 span:nth-child(2) {
   animation: fade-in 2s 0.9s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(3) {
   animation: fade-in 2s 1.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(4) {
   animation: fade-in 2s 1.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(5) {
   animation: fade-in 2s 1.8s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(6) {
   animation: fade-in 2s 2.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(7) {
   animation: fade-in 2s 2.4s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(8) {
   animation: fade-in 2s 2.7s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(9) {
   animation: fade-in 2s 3s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(10) {
   animation: fade-in 2s 3.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
-
 span:nth-child(11) {
   animation: fade-in 2s 3.6s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
@@ -278,13 +336,23 @@ span:nth-child(11) {
 export const ThirdTitle = styled.h3`
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 1.5em;
+    font-size: 0.8em;
+
+@media ${Devices.laptop} {
+    font-size: 1em;
+    max-width: 50ch;
+    } 
+@media ${Devices.desktop} {
+    font-size: 1.75em;
+    } 
 `
+
 export const ForthTitle = styled.h4`
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 1.2em;
 `
+
 export const BodyText =styled.p`
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -293,14 +361,3 @@ export const BodyText =styled.p`
     font-variant-numeric: oldstyle-nums;
 `
 
-const sizes = {
-    tablet: '668px',
-    laptop: '1024px',
-    desktop: '2560px'
-  };
-  
-  export const Devices = {
-    tablet: `(min-width: ${sizes.tablet})`,
-    laptop: `(min-width: ${sizes.laptop})`,
-    desktop: `(min-width: ${sizes.desktop})`
-  };

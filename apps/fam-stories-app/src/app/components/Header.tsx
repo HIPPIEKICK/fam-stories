@@ -2,14 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Title, SubTitle } from './GlobalStyles';
+import { Title, SubTitle, Devices } from './GlobalStyles';
 
 export const Header = () => {
   return (
     <HeaderContainer>
         <HeaderWrapper>
             <Title> <span>FamStories</span></Title>
-            <SubTitle>
+            <SubTitle2>
               <span>See</span>
               <span>your</span>
               <span>roots</span>
@@ -20,7 +20,7 @@ export const Header = () => {
               <span>them</span>
               <span>with</span>
               <span>history</span>
-              </SubTitle>
+              </SubTitle2>
         </HeaderWrapper>    
       </HeaderContainer>
   )
@@ -28,28 +28,37 @@ export const Header = () => {
 
 export const HeaderWrapper = styled.div`
     position: absolute;
-    left: -8em;
-    top: 4.5em;
+    top: 2em;
+    left: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     height: fit-content;
-    width: 250%;
-    //border: solid yellow 2px;
+    width: fit-content;
+    border: solid yellow 3px;
     z-index: 5;
+    
+@media ${Devices.tablet} {
+    top: 2.5em;  
+    left: 0.75em;
+    }
+@media ${Devices.laptop} {
+    top: 3em;  
+    left: 3em;
+    } 
 `
 
 export const HeaderContainer = styled.div`
     position: absolute;
     top: 2em;
-    left: 7em;
+    left: 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 26em;
-    height: 16em;
+    width: 20em;
+    height: 12em;
     color: var(--color-white);
     background-color: var(--color-lighterRed);
     opacity: 0.9;
@@ -57,10 +66,21 @@ export const HeaderContainer = styled.div`
     border: 2px dotted var(--color-white);
     box-shadow: 3px 3px 10px grey;
     z-index: 10;
+
+  @media ${Devices.laptop} {
+      top: 6em;
+      left: 5em;  
+      width: 28em;
+      height: 16em;
+  } 
 `
-//export const Picture = styled.div`
-   // position: relative;
-    //background-color: var(--color-lighterRed);
-   // background-image: url(${brightrootsMini});
-    //background-size: cover;
-  //  `
+export const SubTitle2 = styled(SubTitle)`
+  font-size: 1em;
+  max-width: 35ch;
+  text-align: center;
+
+@media ${Devices.laptop} {
+  font-size: 1.5em;
+  max-width: 35ch;  
+  } 
+`

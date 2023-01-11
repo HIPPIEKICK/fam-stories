@@ -1,10 +1,10 @@
 import React from 'react';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, TextWrapper, Title, SubTitle } from '../components/GlobalStyles';
+import { OuterWrapper, TextWrapper, Title, SubTitle, Devices } from '../components/GlobalStyles';
 import styled from 'styled-components';
 import famphotooldS from '../images/famphotooldS.jpg'
-import { EditFamForm } from './EditProfilePage';
 import LogIn from '../components/Login';
+import { SubTitle2 } from '../components/Header';
 
 export const LogInPage = () => {
   
@@ -14,11 +14,11 @@ export const LogInPage = () => {
             <TextContainer>
                 <TitleVar>Welcome to</TitleVar>
                 <Title1>FamStories</Title1>
-              <SubTitle>
+              <SubTitle3>
                 <span>See</span><span>your</span><span>roots</span><span>take</span>
                 <span>place</span><span>and</span><span>water</span><span>them</span>
                 <span>with</span><span>history</span>
-              </SubTitle> 
+              </SubTitle3> 
             </TextContainer>
             <WelcomePicture>
                 <img src={famphotooldS} alt="Family Photography" />
@@ -31,12 +31,43 @@ export const LogInPage = () => {
 }
 
 const TitleVar = styled(Title)`
-    font-size: 3em;
+    font-size: 1.65em;
     font-weight: 400;
+
+@media ${Devices.tablet} {
+    font-size: 2.25em;
+    }
+@media ${Devices.laptop} {
+    font-size: 2.25em;
+    }
 `
+
 const Title1 = styled(Title)`
-  font-size: 7.5em;
-  margin: 0.25em;
+  font-size: 4em;
+  margin: 0.2em;
+  padding-bottom: 0.25em;
+
+  @media ${Devices.tablet} {
+    font-size: 5.25em;
+    }
+  @media ${Devices.laptop} {
+    font-size: 7.5em;
+    } 
+  @media ${Devices.desktop} {
+    font-size: 12em;
+    }
+`
+export const SubTitle3 = styled(SubTitle2)`
+  font-size: 1.25em;
+  max-width: 35ch;
+  text-align: center;
+
+@media ${Devices.laptop} {
+  font-size: 1.75em; 
+  } 
+@media ${Devices.desktop} {
+  font-size: 2.5em;
+  }   
 `
 
 const TextContainer = styled(TextWrapper)`
@@ -45,64 +76,77 @@ const TextContainer = styled(TextWrapper)`
   flex-direction: column;
   justify-content: center;
   align-items:center;
-  left: 20%;
-  top: 20%;
-  width: 60%;
+  left: 0%;
+  top: 6%;
+  width: 100%;
+  height: 20em;
   z-index: 20;
   padding: 0em;
   margin: 0em;
   background-color: transparent;
   color: var(--color-white);
   //border: 2px solid blue;
+
+  @media ${Devices.tablet} {
+      top: 10%;
+    }
+  @media ${Devices.laptop} {
+      top: 15%;  
+      left: 8%;
+      height: 20em;
+      width: fit-content;
+    }    
+  @media ${Devices.desktop} {
+      top: 20%;  
+      left: 0%;
+      height: 30em;
+    }  
 `
 
 const ClonedWrapper = styled(TextWrapper)`
   position: relative;
-  width: 100%;
-  height: fit-content;
-  padding:0.5em;
-  margin-bottom: 5em;
+  width: 80%;
+  padding: 0em 0.5em;
+  margin-bottom: 2em;
   background-color: var(--color-black);
-  //border: 2px solid blue;
+  //border: 2px solid yellow;
   z-index: 5;
-`
 
-export const ClonedFamForm = styled(EditFamForm)`
-  flex-direction: column;
-  bottom: 8%;
-  right: 30%;
-  width: 10em;
-  padding: 1.5em;
-  border-radius: 0.5em;
-  box-shadow: 3px 3px 3px grey;
-  z-index: 12;
-  background-color: var(--color-white);
-  border: 2px solid blue;
+  @media ${Devices.laptop} {
+    width: 90%;
+    }
+  @media ${Devices.desktop} {
+    left: -10%;
+    height: 85vh;
+    }
 `
-
 const WelcomePicture = styled.div`
     position: relative;
-    top: 10%;
-    left: 12%;
+    top: 5%;
+    left: 5%;
     background-image: url(${famphotooldS});
     background-color: var(--color-lighterRed);
     background-size: cover;
     opacity: 0.6;
     border-radius: 50%;
-    height: 50em;
-    width: 50em;
+    height: 35em;
+    width: 35em;
     overflow: hidden; 
     z-index: 10;
+
+    @media ${Devices.tablet} {
+      height: 45em;
+      width: 45em;
+    }
+    @media ${Devices.laptop} {
+      margin-top: 2em;
+      margin-left: -3em;
+      height: 35em;
+      width: 35em;
+    }
+    @media ${Devices.desktop} {
+      margin-left: -70%;
+      height: 70em;
+      width: 70em;
+    }
 `
-
-//const LogInBtn = styled(AddButton)`
-   // background-color: var(--color-white);
-    //border: 1px solid var(--color-darkerRed);
-   // color: var(--color-darkerRed);
-
-//&:hover {
- //   background-color: var(--color-darkerRed);
-  //  border: 1px solid var(--color-Red);
-  //  color: var(--color-white);
-//}
-//`

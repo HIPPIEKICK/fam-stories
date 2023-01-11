@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import AddForm from '../components/AddForm';
-import { OuterWrapper, InnerWrapper, StartButton, ThirdTitle, SubTitle } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, StartButton, ThirdTitle, SubTitle, Devices } from '../components/GlobalStyles';
 import { useAppSelector, useAppDispatch } from "../store/store";
 import { hydrateFamilyMember } from '../store/familyMembersSlice';
 import { TheTree } from '../components/TheTree';
@@ -45,12 +45,21 @@ export const RootWrapper = styled.div`
   align-items: center;
   width: 80%;
   height: fit-content;
-  //border: 4px solid purple;
+  border: 4px solid purple;
   margin: 4% 0em;
   padding: 3em 1em;
   background-color: var(--color-lighterRed);
   opacity: 0.9;
   border-radius: 0.3em;
+
+@media ${Devices.tablet} {
+    top:-4em;
+    }
+
+@media ${Devices.laptop} {
+    top: 8em;
+    margin: 4% 0em 10% 0em;
+    } 
 `
 
 export const RootContainer = styled.div`

@@ -4,7 +4,7 @@ import { FamilyMember, hydrateFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { Footer } from './Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, TextWrapper, HeaderContainer, Title, HeaderWrapper, SubTitle } from "./GlobalStyles";
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, TextWrapper, HeaderContainer, Title, HeaderWrapper, SubTitle, Devices } from "./GlobalStyles";
 import { Navbar } from "./NavBar";
 
 export const ListFamilyMembers = () => {
@@ -41,14 +41,14 @@ export const ListFamilyMembers = () => {
         <OuterWrapper>
             <InnerWrapper>
             <Navbar />
-            <HeaderContainer>
-              <HeaderWrapper>
+            <FamContainer>
+              <FamWrapper>
                 <Title><span>Family Members</span></Title>
-                  </HeaderWrapper>    
-                </HeaderContainer>
+                  </FamWrapper>    
+                </FamContainer>
                 <TextWrapper>
-                <SubTitle> Here is a list of all your added relatives</SubTitle>
-                <ThirdTitle>Hover over and click on the family member to go to their profile page</ThirdTitle>   
+                <SubTitle> List of all your added relatives</SubTitle>
+                <ThirdTitle>Click on the family members name to go to their profile page</ThirdTitle>   
                 <ListWrapper>
                 <FamList>{listOfFamilyMembers}</FamList> 
                 </ListWrapper>
@@ -64,15 +64,13 @@ export const FamList = styled.ul`
     font-family: 'Open Sans';
     font-size: 1em;
     font-weight: 600;
-
     a {
-        text-decoration: none;
-        color: var(--color-black);
+    text-decoration: none;
+    color: var(--color-black);
     }
-
     a:hover {
-        font-size: 1.25em;
-        transition: 0.5s;
+    font-size: 1.25em;
+    transition: 0.5s;
     }
 `
 export const RelationList = styled(FamList)`
@@ -85,7 +83,58 @@ export const ListWrapper = styled.div`
     align-items: flex-start;
     margin: 1em 0em;
     padding: 1em;
-    width: 30%;
+    width: 90%;
     background-color: var(--color-whiter);
     border: 2px solid var(--color-green);
+
+@media ${Devices.tablet} {
+    width: 60%;
+    }
+
+@media ${Devices.laptop} {
+    width: 45%;
+    } 
+`
+
+export const FamWrapper = styled(HeaderWrapper)`
+    position: absolute;
+    left: 4em;
+    top: 1.5em;
+    width: 60%;
+    z-index: 5;
+
+@media ${Devices.tablet} {
+    top: 1.25em;
+    left: 4em;
+    }
+@media ${Devices.laptop} {
+    top: 1.25em;
+    left: 5em;
+    } 
+@media ${Devices.desktop} {
+    top: 2.2em;
+    left: 8em;
+    max-width: 30ch;
+    } 
+`
+
+export const FamContainer = styled(HeaderContainer)`
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    width: 20em;
+    height: 12em;
+
+@media ${Devices.tablet} {
+    top: 4em;
+    left: 3em;
+    }
+@media ${Devices.laptop} {
+    top: 4em;
+    left: 5em;
+    } 
+@media ${Devices.desktop} {
+    top: 6em;
+    left: 8em;
+    }     
 `

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Hamburger from 'hamburger-react';
+import { Devices } from './GlobalStyles';
 
 export const Navbar = () => {
   const [isOpen, setOpen] = useState(false)
@@ -26,7 +27,6 @@ export const Navbar = () => {
                 <li><NavLink to="/about">About</NavLink></li>
                 <li><NavLink to="/listfamilymembers">Family list</NavLink></li>
                 <li><NavLink to="/user">User/Log out</NavLink></li>
-                <li><NavLink to="/">LogIn/Welcome</NavLink></li>
             </ul>
          </Nav>   
     )
@@ -34,7 +34,37 @@ export const Navbar = () => {
 
 export const Nav = styled.li`
     position: relative;
-    top: -8em;
+    top: 0em;
+    left: 30%;
+    text-align: end;
+    margin: 0em;
+    font-size: 0.75em;
+    z-index: 10;
+    
+    a {
+    display: block;
+    padding: 0.5em;
+    text-decoration: none;
+    color: var(--color-white);
+    background-color: transparent;
+    border-radius: 12px;
+    font-family: 'Open Sans';
+    opacity: 0.9;
+    z-index: 3;
+
+    .active
+    text-decoration: underline;
+    color: var(--color-white);
+  }
+
+@media ${Devices.tablet} {
+    top: -7em;
+    left: 28%;
+    font-size: 1.2em;
+}
+
+@media ${Devices.laptop} {
+    top: -9em;
     left: 28%;
     align-items: center;
     color: var(--color-white);
@@ -43,18 +73,11 @@ export const Nav = styled.li`
 
     li {
     float: left;
-  }
+    }
 
     a {
-    display: block;
-    padding: 0.6em;
-    text-decoration: none;
     color: var(--color-black);
     background-color:var(--color-white);
-    border-radius: 12px;
-    font-family: 'Open Sans';
-    opacity: 0.9;
-    z-index: 3;
   }
 
     a:hover {
@@ -62,12 +85,14 @@ export const Nav = styled.li`
     border-radius: 8px;
     z-index: 3;
   }
-   
+}
     .active {
-    //background-color: var(--color-red);
     border-radius: 8px;
-    text-decoration: underline;
-    color: var(--color-black);
+}
+
+@media ${Devices.desktop} {
+    top: -7em;
+    left: 32%;
 }
 `
 

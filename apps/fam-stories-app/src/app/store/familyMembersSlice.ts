@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { generateId } from "../idHelper";
+import { AnyARecord } from "dns";
 
 export enum RelationshipType { 
     Father = 'Father',

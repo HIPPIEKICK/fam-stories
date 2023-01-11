@@ -3,6 +3,8 @@ import {  useAppSelector  } from "../store/store";
 import { Footer } from '../components/Footer';
 import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, HeaderContainer, Title, HeaderWrapper, RelList } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
+import { FamContainer, FamWrapper } from '../components/ListFamilyMembers';
+import styled from 'styled-components';
 
 export const ProfilePage = () => {
     const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
@@ -31,11 +33,11 @@ export const ProfilePage = () => {
             <OuterWrapper>
                 <InnerWrapper>
                 <Navbar />
-                <HeaderContainer>
-                    <HeaderWrapper>
+                <FamContainer>
+                    <FamWrapper>
                         <Title> <span>{familyMember.name}</span></Title>
-                        </HeaderWrapper>    
-                    </HeaderContainer>
+                        </FamWrapper>    
+                    </FamContainer>
                     <TextWrapper>
                     <ThirdTitle>{familyMember.name}</ThirdTitle>
                     <BodyText>
@@ -43,11 +45,10 @@ export const ProfilePage = () => {
                        Lives: {familyMember.locality} <br />
                         {familyMember.title} <br />
                     </BodyText>
-                    <RelList>{listOfRelationships}</RelList>
-                       
+                    <RelList2>{listOfRelationships}</RelList2>
                     <BodyText>
-                        Här är en sida för att addera information om varje familjemedlem om det finns. <br />
-                        Exempelvis tester, foton, videos, eller annat som recept eller tidningsutklipp.</BodyText>
+                        This is a profile page to add information and history about that specific familymember.<br />
+                        And even things like photos, videos, or recepies, articles or other thing you have.</BodyText>
                     <BackButton type="button" onClick={onHomeButtonClick}>Return to Roots</BackButton>
                     <BackButton type="button" onClick={onToFamListClick}>To Family list</BackButton>
                     </TextWrapper> 
@@ -56,3 +57,7 @@ export const ProfilePage = () => {
             </OuterWrapper>
         )
     }    
+
+    const RelList2 = styled(RelList)`
+        margin: 0em;
+    `

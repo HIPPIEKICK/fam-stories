@@ -2,22 +2,23 @@ import React from 'react';
 import { Footer } from '../components/Footer';
 import { AddMemberForm } from '../components/AddFamilyMember';
 import { AddRelationship } from '../components/AddRelationship';
-import { useAppDispatch, useAppSelector } from "../store/store";
+import {  useAppSelector } from "../store/store";
 import styled from 'styled-components';
-import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, HeaderContainer, HeaderWrapper, Title, BodyText, RelList, EditButton } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, HeaderContainer, HeaderWrapper, Title, BodyText, RelList, Devices } from '../components/GlobalStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/NavBar';
+import { FamContainer, FamWrapper } from '../components/ListFamilyMembers';
 
 export const EditProfilePage = () => {
   const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
   const { familyMemberId } = useParams();
   const familyMember = familyMembers.find((familyMember) => familyMember.id === familyMemberId);
 
-  const dispatch = useAppDispatch();
+  //const dispatch = useAppDispatch();
 
-  const onRemoveClick = (e) => {
-    dispatch(tasks.actions.removeItem(e))
-  }
+  //const onRemoveClick = (event) => {
+  //  dispatch(familyMember.actions.removeItem(event))
+  //}
 
   const navigate = useNavigate();
     const onHomeButtonClick = () => {
@@ -37,25 +38,25 @@ export const EditProfilePage = () => {
 
     const listOfRelationships =  familyMember.relationships.map((relationship) => {
     const relationMember = familyMembers.find((familyMember) => familyMember.id === relationship.familyMemberId) 
-      return <div> is {relationship.relationtype} to {relationMember?.name} <button type="button"
-      onClick={() => onRemoveClick(relationship)}></button></div>
+      return <div> is {relationship.relationtype} to {relationMember?.name} </div>
+      //<button type="button" onClick={() => onRemoveClick(relationship)}></button>
   });
   
   return (
     <OuterWrapper>
         <InnerWrapper>
             <Navbar />
-            <HeaderContainer>
-              <HeaderWrapper>
+            <FamContainer>
+              <FamWrapper>
                 <Title> <span>Edit Profile</span></Title>
-                </HeaderWrapper>    
-                </HeaderContainer>
+                </FamWrapper>    
+                </FamContainer>
             <EditWrapper>
             <EditFamForm>
               <AddMemberForm />
               <AddRelationship />
-              <RelList>{listOfRelationships}</RelList>
             </EditFamForm>
+            <RelList>{listOfRelationships}</RelList>
             <BtnWrapper>
               <BackButton type="button" onClick={onAddMemberClick}>Add more relatives</BackButton>
               <BackButton type="button" onClick={onToFamListClick}>Family list</BackButton>
@@ -67,10 +68,19 @@ export const EditProfilePage = () => {
     </OuterWrapper>
   )
 };
+const EditWrapper = styled(TextWrapper)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
 
+@media ${Devices.laptop} {
+  width: 60%;
+  }
+`
 export const EditFamForm = styled.div `
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     margin: 2%;
     padding: 1em;
@@ -78,13 +88,10 @@ export const EditFamForm = styled.div `
     box-shadow: 2px 2px 2px 2px grey;
     border-radius: 0.5em;
     width: fit-content;
-`
 
-const EditWrapper = styled(TextWrapper)`
-  display: flex;
-  flex-direction:column; 
-  align-items: center;
-  width: 50%;
+@media ${Devices.laptop} {
+    flex-direction: row;
+  }
 `
 
 export const BtnWrapper = styled.div`
