@@ -33,7 +33,7 @@ export const InnerWrapper = styled.div`
     background-image: url(${brightrootsL});
     background-size: cover;
     background-attachment: scroll;
-    border: 2px solid blue;
+    //border: 2px solid blue;
     z-index: 2;
 `
 export const HeaderWrapper = styled.div`
@@ -108,10 +108,10 @@ export const RelList = styled.div`
       width: 70%;
     }
   @media ${Devices.laptop} {
-    width: 60%;
+    width: 55%;
     } 
-  @media ${Devices.laptop} {
-    width: 50%;
+  @media ${Devices.desktop} {
+    width: 40%;
     }  
 `
 export const Label = styled.label`
@@ -124,8 +124,8 @@ export const Label = styled.label`
 `
 export const Input = styled.input`
     font-family: 'Open sans';
-    padding: 0.75em;
-    margin: 5px;
+    padding: 0.5em;
+    margin: 0.25em;
     border-radius: 0.5em;
     background-color: var(--color-white);
     border: 1px solid var(--color-black);

@@ -22,7 +22,6 @@ const toggle = () => {
         { 
         visible? <AddFamForm>
             <AddMemberForm />
-            <AddRelationship />
             </AddFamForm>: null
         }
         </FormWrapper>

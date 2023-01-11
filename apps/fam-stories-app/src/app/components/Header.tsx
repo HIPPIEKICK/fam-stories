@@ -36,7 +36,7 @@ export const HeaderWrapper = styled.div`
     text-align: center;
     height: fit-content;
     width: fit-content;
-    border: solid yellow 3px;
+    //border: solid yellow 3px;
     z-index: 5;
     
 @media ${Devices.tablet} {

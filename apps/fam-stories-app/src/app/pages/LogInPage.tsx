@@ -1,6 +1,6 @@
 import React from 'react';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, TextWrapper, Title, SubTitle, Devices } from '../components/GlobalStyles';
+import { OuterWrapper, TextWrapper, Title, Devices } from '../components/GlobalStyles';
 import styled from 'styled-components';
 import famphotooldS from '../images/famphotooldS.jpg'
 import LogIn from '../components/Login';

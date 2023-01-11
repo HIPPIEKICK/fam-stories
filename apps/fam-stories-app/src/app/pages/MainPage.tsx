@@ -45,7 +45,7 @@ export const RootWrapper = styled.div`
   align-items: center;
   width: 80%;
   height: fit-content;
-  border: 4px solid purple;
+  //border: 4px solid purple;
   margin: 4% 0em;
   padding: 3em 1em;
   background-color: var(--color-lighterRed);

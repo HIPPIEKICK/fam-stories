@@ -60,4 +60,5 @@ export const ProfilePage = () => {
 
     const RelList2 = styled(RelList)`
         margin: 0em;
+        width: 30%;
     `

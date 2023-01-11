@@ -4,7 +4,7 @@ import { AddMemberForm } from '../components/AddFamilyMember';
 import { AddRelationship } from '../components/AddRelationship';
 import {  useAppSelector } from "../store/store";
 import styled from 'styled-components';
-import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, HeaderContainer, HeaderWrapper, Title, BodyText, RelList, Devices } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, Title, BodyText, RelList, Devices } from '../components/GlobalStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/NavBar';
 import { FamContainer, FamWrapper } from '../components/ListFamilyMembers';
@@ -30,7 +30,6 @@ export const EditProfilePage = () => {
     const onToFamListClick = () => {
       navigate ('/listfamilymembers');
     }
-
 
     if(!familyMember) {
       return <BodyText>Family member not found</BodyText>
