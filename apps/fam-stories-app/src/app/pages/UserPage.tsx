@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, AddButton, TextWrapper, Title } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, TextWrapper, Title } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
-import { AboutContainer, AboutWrapper } from './AboutAppPage';
 import { FamContainer, FamWrapper } from '../components/ListFamilyMembers';
+import { useAppDispatch } from '../store/store';
+import { getEveryone } from '../store/familyMembersSlice';
 
 export const UserPage = () => {
+
+  const dispatch = useAppDispatch();
+  useEffect(() => { 
+      dispatch(getEveryone());
+  }, [dispatch]);
+  
   const navigate = useNavigate();
   const onHomeButtonClick = () => {
     navigate('/main');

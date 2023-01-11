@@ -1,62 +1,98 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction,createAsyncThunk } from "@reduxjs/toolkit";
 import { generateId } from "../idHelper";
-import { AnyARecord } from "dns";
 
-export enum RelationshipType { 
-    Father = 'Father',
-    Mother = 'Mother',
-    Son = 'Son',
-    Daughter = 'Daughter',
-    Brother = 'Brother',
-    Sister = 'Sister',
-}
-
-export const listOfRelationShipTypes = Object.values(RelationshipType);
-type Relationship = { 
-    relationtype: RelationshipType;
-    familyMemberId: string;
-}
-type FamilyMemberInput = { 
-    name: string;
-    birthYear: string;
-    locality: string;
-    title: string
-};
-
-type FamilyMemberEditInput = & FamilyMemberInput & { 
-    id: string;
-}
-
-export type FamilyMember = FamilyMemberInput & { 
-    id: string;
-    relationships: Relationship[];
-};
+import { 
+  FamilyMember, 
+  FamilyMemberInput, 
+  FamilyMemberEditInput, 
+  RelationshipInput, 
+  RelationshipType } from "@fam-stories/common-utils";
 
 const initialState = {
-    familyMembers: [] as FamilyMember[],
-    lastFamilyMemberIdAdded: '', 
+  familyMembers: [] as FamilyMember[],
+  lastFamilyMemberIdAdded: '',
+  isHydrating: false 
 }
 
-type RelationshipInput = {
-    relationtype: string;
-    fromFamilyMemberId: string;
-    toFamilyMemberId: string;
-}
+export const getEveryone = createAsyncThunk(
+  //action type string
+  'family/everyone',
+  // callback function
+  async () => {
+    const res = await fetch('http://localhost:3333/family/everyone').then(
+    (data) => data.json()
+  )
+  return res
+})
+
+export const createMember = createAsyncThunk(
+  //action type string
+  'family/createMember',
+  // callback function
+  async (createMemberInput: FamilyMemberInput) => {
+    const insertResponse = await fetch('http://localhost:3333/family/createMember', {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(createMemberInput)
+    }).then((data) => data.json());
+
+    const everyone = await fetch('http://localhost:3333/family/everyone').then(
+      (data) => data.json())
+
+  return {everyone, insertResponse}
+})
+
+export const updateMember = createAsyncThunk(
+  //action type string
+  'family/createMember',
+  // callback function
+  async (updateMemberInput: FamilyMemberEditInput) => {
+    const updateResponse = await fetch('http://localhost:3333/family/updateMember', {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updateMemberInput)
+    }).then((data) => data.json());
+
+    const everyone = await fetch('http://localhost:3333/family/everyone').then(
+      (data) => data.json())
+
+  return {everyone, updateResponse}
+})
+
+export const deleteMember = createAsyncThunk(
+  //action type string
+  'family/createMember',
+  // callback function
+  async (deleteMemberInput: FamilyMemberDeleteInput) => {
+    const deleteResponse = await fetch('http://localhost:3333/family/deleteMember', {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deleteMemberInput)
+    }).then((data) => data.json());
+
+    const everyone = await fetch('http://localhost:3333/family/everyone').then(
+      (data) => data.json())
+
+  return {everyone, deleteResponse}
+})
 
 export const familyMembersSlice = createSlice({
     name: 'familyMembers',
     initialState,
     reducers: {
-      addFamilyMember: (state, action: PayloadAction<FamilyMemberInput>) => {
-        const newFamilyMember = { ... action.payload, id: generateId(), relationships: [] };
-        state.familyMembers.push(newFamilyMember);
-        localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
-        state.lastFamilyMemberIdAdded = newFamilyMember.id;
-        return state;
-      },
+      // addFamilyMember: (state, action: PayloadAction<FamilyMemberInput>) => {
+      //   const newFamilyMember = { ... action.payload, id: generateId(), relationships: [] };
+      //   state.familyMembers.push(newFamilyMember);
+      //   localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
+      //   state.lastFamilyMemberIdAdded = newFamilyMember._id;
+      //   return state;
+      // },
       
       editFamilyMember: (state, action: PayloadAction<FamilyMemberEditInput>) => {
-        const indexOfMemberToEdit = state.familyMembers.findIndex(member => member.id === action.payload.id);
+        const indexOfMemberToEdit = state.familyMembers.findIndex(member => member._id === action.payload._id);
         const memberToEdit = state.familyMembers[indexOfMemberToEdit];
         state.familyMembers[indexOfMemberToEdit] = { ...action.payload, relationships: memberToEdit.relationships };
         localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
@@ -64,8 +100,8 @@ export const familyMembersSlice = createSlice({
       },
 
       addRelationshipToMember: (state, action: PayloadAction<RelationshipInput>) => {
-        const indexOfMemberToEdit = state.familyMembers.findIndex(member => member.id === action.payload.fromFamilyMemberId);
-        const indexOfMemberSecondToEdit = state.familyMembers.findIndex(member => member.id === action.payload.toFamilyMemberId);
+        const indexOfMemberToEdit = state.familyMembers.findIndex(member => member._id === action.payload.fromFamilyMemberId);
+        const indexOfMemberSecondToEdit = state.familyMembers.findIndex(member => member._id === action.payload.toFamilyMemberId);
         const memberToEdit = state.familyMembers[indexOfMemberToEdit];
         const secondMemberToEdit = state.familyMembers[indexOfMemberSecondToEdit];
 
@@ -81,14 +117,43 @@ export const familyMembersSlice = createSlice({
         return state;
       },
 
-      hydrateFamilyMember: (state, action: PayloadAction<void>) => {
-        const storedFamilyMembersString = localStorage.getItem('familyMembers');
-        if (storedFamilyMembersString) {
-            state.familyMembers = JSON.parse(storedFamilyMembersString);
-        }
-        return state;
-      }
+      // hydrateFamilyMember: (state, action: PayloadAction<void>) => {
+      //   const storedFamilyMembersString = localStorage.getItem('familyMembers');
+      //   if (storedFamilyMembersString) {
+      //       state.familyMembers = JSON.parse(storedFamilyMembersString);
+      //   }
+      //   return state;
+      // }
     },
+    extraReducers: (builder) => {
+      builder
+        .addCase(getEveryone.fulfilled, (state, action) => {
+          state.familyMembers = action.payload;
+          state.isHydrating = false;
+        })
+        builder
+        .addCase(getEveryone.pending, (state, action) => {
+          state.isHydrating = true;
+        })
+
+        builder
+        .addCase(createMember.fulfilled, (state, action) => {
+          state.familyMembers = action.payload.everyone;
+          state.lastFamilyMemberIdAdded = action.payload.insertResponse.insertedId;
+        })
+
+        builder
+        .addCase(updateMember.fulfilled, (state, action) => {
+          state.familyMembers = action.payload.everyone; //familyMembers?
+          state.lastFamilyMemberIdAdded = action.payload.updateResponse.insertedId;
+        })
+
+        builder
+        .addCase(deleteMember.fulfilled, (state, action) => {
+          state.familyMembers = action.payload.familyMemberId; //everyone?
+          state.lastFamilyMemberIdAdded = action.payload.deletedResponse.insertedId;
+        })
+    }
   })
 
-export const { addFamilyMember, hydrateFamilyMember, editFamilyMember, addRelationshipToMember } = familyMembersSlice.actions;
+export const {  editFamilyMember, addRelationshipToMember } = familyMembersSlice.actions;

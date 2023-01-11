@@ -1,16 +1,25 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import {  useAppSelector  } from "../store/store";
+import {  useAppSelector,useAppDispatch  } from "../store/store";
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, HeaderContainer, Title, HeaderWrapper, RelList } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, Title, RelList } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
 import { FamContainer, FamWrapper } from '../components/ListFamilyMembers';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { getEveryone } from '../store/familyMembersSlice';
+import { Relationship } from '@fam-stories/common-utils';
 
 export const ProfilePage = () => {
+    
+    const dispatch = useAppDispatch();
+    useEffect(() => { 
+        dispatch(getEveryone());
+    }, [dispatch]);
+
     const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
     const { familyMemberId } = useParams();
 
-    const familyMember = familyMembers.find((familyMember) => familyMember.id === familyMemberId);
+    const familyMember = familyMembers.find((familyMember) => familyMember._id === familyMemberId);
     
     const navigate = useNavigate();
     const onHomeButtonClick = () => {
@@ -21,19 +30,28 @@ export const ProfilePage = () => {
     }
 
     if(!familyMember) {
-        return <BodyText>Family member not found</BodyText>
+        return <BodyText>
+         <div>
+                        {JSON.stringify(familyMember)}
+                    </div>
+
+                    <div>{familyMemberId}</div>
+        <div>Family member not found!!!!</div></BodyText>
     }
 
-    const listOfRelationships =  familyMember.relationships.map((relationship) => {
-        const relationMember = familyMembers.find((familyMember) => familyMember.id === relationship.familyMemberId) 
-        return <div> is {relationship.relationtype} to {relationMember?.name} </div>
-    });
 
+    const listOfRelationships = familyMember.relationships ? familyMember.relationships.map((relationship:Relationship) => {
+        const relationMember = familyMembers.find((familyMember) => familyMember._id === relationship.familyMemberId) 
+        return <div> is {relationship.relationtype} to {relationMember?.name} </div>
+        //<Editbutton>X</Editbutton>
+      // type="button" onClick={() => onRemoveClick(relationship)}
+    }) : null;
         return (
             <OuterWrapper>
                 <InnerWrapper>
                 <Navbar />
                 <FamContainer>
+                   
                     <FamWrapper>
                         <Title> <span>{familyMember.name}</span></Title>
                         </FamWrapper>    

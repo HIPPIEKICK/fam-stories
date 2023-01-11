@@ -2,9 +2,9 @@ import {useEffect} from 'react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import AddForm from '../components/AddForm';
-import { OuterWrapper, InnerWrapper, StartButton, ThirdTitle, SubTitle, Devices } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, StartButton, SubTitle, Devices } from '../components/GlobalStyles';
 import { useAppSelector, useAppDispatch } from "../store/store";
-import { hydrateFamilyMember } from '../store/familyMembersSlice';
+import { getEveryone } from '../store/familyMembersSlice';
 import { TheTree } from '../components/TheTree';
 import { familyMembersToGraph } from '../store/familyMembersToGraph';
 import styled from 'styled-components';
@@ -16,7 +16,7 @@ export const RootsPage = () => {
 
   const dispatch = useAppDispatch();
   useEffect(() => { 
-      dispatch(hydrateFamilyMember());
+      dispatch(getEveryone());
   }, [dispatch]);
 
   return (

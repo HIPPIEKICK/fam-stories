@@ -10,18 +10,16 @@ export const TheTree = ({graphData} : {graphData:Graph }) => {
             node.fy = node.y;
           }}
           nodeCanvasObject={(node:any, ctx:any, globalScale:any) => {
-         
-
+        
             const label = node.name;
+
             const fontSize = 12/globalScale;
             ctx.font = `${fontSize}px Open Sans`;
             const textWidth = ctx.measureText(label).width;
-            const bckgDimensions = [textWidth, fontSize, ].map(n => n + fontSize * 0.8); // some padding
+            const bckgDimensions = [textWidth, fontSize, ].map(n => n + fontSize * 0.6); // some padding
 
-
-            ctx.fillStyle = '#4b2c0f';
+            ctx.fillStyle = '#eae318';
             ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions);
-
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = node.color;
@@ -36,3 +34,5 @@ export const TheTree = ({graphData} : {graphData:Graph }) => {
           }}
         />
 }
+
+//<Link to={`/profilepage/${familyMember._id}`}>{familyMember.name}</Link>

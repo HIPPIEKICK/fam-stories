@@ -1,9 +1,10 @@
 import { FormEvent, useState } from "react";
-import { addRelationshipToMember, FamilyMember, listOfRelationShipTypes } from "../store/familyMembersSlice";
+import { addRelationshipToMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { BodyText, AddButton, Label } from "./GlobalStyles";
 import { useParams } from 'react-router-dom';
+import { FamilyMember, listOfRelationShipTypes } from "@fam-stories/common-utils";
 
 export const AddRelationship = () => {
     const [toFamilyMemberId, setToFamilyMemberId] = useState('');
@@ -11,7 +12,7 @@ export const AddRelationship = () => {
 
     const familyMembers = useAppSelector<FamilyMember[]>(state => state.familyMembers.familyMembers);
     const { familyMemberId } = useParams();
-    const familyMember = familyMembers.find(familyMember => familyMember.id === familyMemberId);
+    const familyMember = familyMembers.find(familyMember => familyMember._id === familyMemberId);
 
     const dispatch = useAppDispatch();
     
@@ -27,17 +28,17 @@ export const AddRelationship = () => {
         ...listOfRelationShipTypes.map((relationtype) => {return <option value={relationtype}>{relationtype}</option>})]
     const familymemberOptionList = [
         <option value="">Select a family member</option>,
-        ...familyMembers.map((familyMember) => {return <option value={familyMember.id}>{familyMember.name}</option>})
+        ...familyMembers.map((familyMember) => {return <option value={familyMember._id}>{familyMember.name}</option>})
     ];
     
-    const relationshipList = familyMember?.relationships.map((relationship, index) => { 
-        const member = familyMembers.find(familyMember => familyMember.id === relationship.familyMemberId);
+    const relationshipList = familyMember?.relationships ? familyMember?.relationships.map((relationship, index) => { 
+        const member = familyMembers.find(familyMember => familyMember._id === relationship.familyMemberId);
         return <div key={index}>
             {relationship.relationtype} 
             <BodyText>to</BodyText>
             { member?.name }
             </div>
-    });
+    }) : [];
 
     return <RelationForm onSubmit={onSubmit}>
         <Label aria-label="type of relationship" htmlFor="relationtype"></Label>

@@ -1,4 +1,5 @@
-import { FamilyMember } from "./familyMembersSlice";
+import { FamilyMember } from "@fam-stories/common-utils";
+
 
 export type Node = { 
     id: string;
@@ -21,21 +22,21 @@ export const familyMembersToGraph = (familyMembers: FamilyMember[]): Graph => {
 
     const nodes = familyMembers.map((familyMember) => { 
         return { 
-            id: familyMember.id,
+            id: familyMember._id,
             name: familyMember.name,
             group: 1    
         }
     });
 
     const links = familyMembers.reduce((acc, familyMember) => {
-        const linkRelations = familyMember.relationships.map((relationship) => { 
+        const linkRelations = familyMember.relationships ? familyMember.relationships.map((relationship) => { 
             return { 
-                source: familyMember.id,
+                source: familyMember._id,
                 target: relationship.familyMemberId,
                 value: 1,
                 linkType: relationship.relationtype
             }
-        });
+        }) : [];
 
         acc = [...acc, ...linkRelations]
 

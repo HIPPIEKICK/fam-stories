@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom';
-import { FamilyMember, hydrateFamilyMember } from "../store/familyMembersSlice";
+import { getEveryone } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { Footer } from './Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, TextWrapper, HeaderContainer, Title, HeaderWrapper, SubTitle, Devices } from "./GlobalStyles";
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, EditButton, TextWrapper, HeaderContainer, Title, HeaderWrapper, SubTitle, Devices, AddButton } from "./GlobalStyles";
 import { Navbar } from "./NavBar";
+import { FamilyMember } from "@fam-stories/common-utils";
 
 export const ListFamilyMembers = () => {
     const dispatch = useAppDispatch();
     useEffect(() => { 
-        dispatch(hydrateFamilyMember());
+        dispatch(getEveryone());
     }, [dispatch]);
 
     const familyMembers = useAppSelector<FamilyMember[]>(state => state.familyMembers.familyMembers);
@@ -22,17 +23,19 @@ export const ListFamilyMembers = () => {
 
     const listOfFamilyMembers = familyMembers.map((familyMember) => {
         const familyRelationshipList = familyMember.relationships && familyMember.relationships.map((familyRelationship) => { 
-            const relationshipMemberData = familyMembers.find((familyMember) => familyMember.id === familyRelationship.familyMemberId);
+            const relationshipMemberData = familyMembers.find((familyMember) => familyMember._id === familyRelationship.familyMemberId);
             return <div>{relationshipMemberData?.name} </div>;
         });
 
     
         return (
-            <li key={familyMember.id}>
-            <li><Link to={`/profilepage/${familyMember.id}`}>{familyMember.name}</Link> </li>- {familyMember.birthYear} - {familyMember.locality} - {familyMember.title}
+            <li key={familyMember._id}>
+            <li><Link to={`/profilepage/${familyMember._id}`}>{familyMember.name}</Link> </li>- {familyMember.birthYear} - {familyMember.locality} - {familyMember.title}
             <RelationList>{familyRelationshipList}</RelationList>
-            <EditButton onClick={() => navigate('/editprofile/' + familyMember.id) }>Edit</EditButton>
+            <EditButton onClick={() => navigate('/editprofile/' + familyMember._id) }>Edit</EditButton>
+            <AddButton>X</AddButton>
             </li>
+            //type="button" onClick={() => onRemoveClick(familyMember)}
         );
     });
 

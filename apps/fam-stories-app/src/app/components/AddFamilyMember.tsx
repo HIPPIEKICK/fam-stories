@@ -1,5 +1,5 @@
 import { FormEvent, useState, useEffect } from "react";
-import { addFamilyMember, editFamilyMember } from "../store/familyMembersSlice";
+import { createMember, editFamilyMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { AddButton, Input, Label, ThirdTitle } from "./GlobalStyles";
 import styled from "styled-components";
@@ -28,24 +28,23 @@ export const AddMemberForm = () => {
 
     useEffect(() => {
         if (familyMemberId) {
-            const familyMember = familyMembers.find(familyMember => familyMember.id === familyMemberId);
+            const familyMember = familyMembers.find(familyMember => familyMember._id === familyMemberId);
             if (familyMember) {
                 setName(familyMember.name);
                 setBirthYear(familyMember.birthYear);
                 setLocality(familyMember.locality);
                 setTitle(familyMember.title);
-                setId(familyMember.id);
+                setId(familyMember._id);
             }
-        }
-        
+        } 
     }, [familyMemberId, familyMembers]);
     
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
         if(familyMemberId) { 
-            dispatch(editFamilyMember({name, birthYear, locality, title, id}))
+            dispatch(editFamilyMember({name, birthYear, locality, title, _id: id}))
         } else {
-            dispatch(addFamilyMember({name, birthYear, locality, title}))
+            dispatch(createMember({name, birthYear, locality, title}))
         }
         setIsSaved(true);        
     }

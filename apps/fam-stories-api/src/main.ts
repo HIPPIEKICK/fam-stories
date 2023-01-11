@@ -5,8 +5,22 @@
 
 import * as express from 'express';
 import * as path from 'path';
+import familyRouter from './routers/family.router';
+import * as cors from 'cors';
+import { connectToServer } from './mongoDbClient';
+
+
+
+(async () => { 
+  await connectToServer()
+})();
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/family', familyRouter);
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 

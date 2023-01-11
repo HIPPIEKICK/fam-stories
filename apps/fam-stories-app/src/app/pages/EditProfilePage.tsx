@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Footer } from '../components/Footer';
 import { AddMemberForm } from '../components/AddFamilyMember';
 import { AddRelationship } from '../components/AddRelationship';
-import {  useAppSelector } from "../store/store";
+import {  useAppDispatch, useAppSelector } from "../store/store";
 import styled from 'styled-components';
 import { OuterWrapper, InnerWrapper, BackButton, TextWrapper, Title, BodyText, RelList, Devices } from '../components/GlobalStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/NavBar';
 import { FamContainer, FamWrapper } from '../components/ListFamilyMembers';
+import { getEveryone } from '../store/familyMembersSlice';
 
 export const EditProfilePage = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => { 
+      dispatch(getEveryone());
+  }, [dispatch]);
+  
   const familyMembers = useAppSelector ((store) => store.familyMembers.familyMembers)
   const { familyMemberId } = useParams();
-  const familyMember = familyMembers.find((familyMember) => familyMember.id === familyMemberId);
+  const familyMember = familyMembers.find((familyMember) => familyMember._id === familyMemberId);
 
   //const dispatch = useAppDispatch();
 
@@ -32,14 +38,22 @@ export const EditProfilePage = () => {
     }
 
     if(!familyMember) {
-      return <BodyText>Family member not found</BodyText>
+      return <BodyText>
+       <div>
+                      {JSON.stringify(familyMembers)}
+                  </div>
+
+                  <div>{familyMemberId}</div>
+      <div>Family member not found!!!!</div></BodyText>
   }
 
-    const listOfRelationships =  familyMember.relationships.map((relationship) => {
-    const relationMember = familyMembers.find((familyMember) => familyMember.id === relationship.familyMemberId) 
-      return <div> is {relationship.relationtype} to {relationMember?.name} </div>
-      //<button type="button" onClick={() => onRemoveClick(relationship)}></button>
-  });
+
+    const listOfRelationships =  familyMember.relationships ? familyMember.relationships.map((relationship) => {
+    const relationMember = familyMembers.find((familyMember) => familyMember._id === relationship.familyMemberId) 
+      return <div> is {relationship.relationtype} to {relationMember?.name}</div>
+      //<Editbutton>X</Editbutton>
+      // type="button" onClick={() => onRemoveClick(relationship)}
+  }) : null;
   
   return (
     <OuterWrapper>
