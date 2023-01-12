@@ -27,7 +27,7 @@ export const AddRelationship = () => {
         <option value="">Select a relation</option>,
         ...listOfRelationShipTypes.map((relationtype) => {return <option value={relationtype}>{relationtype}</option>})]
     const familymemberOptionList = [
-        <option value="">Select a family member</option>,
+        <option value="">Select a family member</option>, //sort by letters?
         ...familyMembers.map((familyMember) => {return <option value={familyMember._id}>{familyMember.name}</option>})
     ];
     
@@ -41,6 +41,7 @@ export const AddRelationship = () => {
     }) : [];
 
     return <RelationForm onSubmit={onSubmit}>
+        {relationshipList}
         <Label aria-label="type of relationship" htmlFor="relationtype"></Label>
         <Select id="relationtype" 
                 value={relationtype} 

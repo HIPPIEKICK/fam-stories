@@ -6,10 +6,10 @@
 import * as express from 'express';
 import * as path from 'path';
 import familyRouter from './routers/family.router';
+import authRouter from './routers/login.router';
 import * as cors from 'cors';
 import { connectToServer } from './mongoDbClient';
-
-
+import { authenticateUser } from './authenicationMiddleware';
 
 (async () => { 
   await connectToServer()
@@ -20,7 +20,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+
+app.use('/family', authenticateUser)
 app.use('/family', familyRouter);
+app.use('/auth', authRouter);
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 

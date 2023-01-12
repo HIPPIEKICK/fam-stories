@@ -16,7 +16,7 @@ export const App = () => {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LogInPage />} />
+            <Route path="/login" element={<LogInPage />} />
             <Route path="/main" element={<RootsPage />} />
             <Route path="/profilePage/:familyMemberId" element={<ProfilePage />} /> 
             <Route path="/editprofile/:familyMemberId" element={<EditProfilePage />} /> 

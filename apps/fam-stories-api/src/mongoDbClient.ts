@@ -12,7 +12,6 @@ let dbConnection = null;
 export async function connectToServer() {
     const db = await client.connect();
     dbConnection = db.db(dbName);
-
 }
 
 export function getDb() {

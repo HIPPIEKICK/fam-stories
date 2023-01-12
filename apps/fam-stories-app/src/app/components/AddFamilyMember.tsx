@@ -1,5 +1,5 @@
 import { FormEvent, useState, useEffect } from "react";
-import { createMember, editFamilyMember } from "../store/familyMembersSlice";
+import { createMember, updateMember } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { AddButton, Input, Label, ThirdTitle } from "./GlobalStyles";
 import styled from "styled-components";
@@ -42,7 +42,7 @@ export const AddMemberForm = () => {
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
         if(familyMemberId) { 
-            dispatch(editFamilyMember({name, birthYear, locality, title, _id: id}))
+            dispatch(updateMember({name, birthYear, locality, title, _id: id}))
         } else {
             dispatch(createMember({name, birthYear, locality, title}))
         }

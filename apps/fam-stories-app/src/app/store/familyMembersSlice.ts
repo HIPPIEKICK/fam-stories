@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction,createAsyncThunk } from "@reduxjs/toolkit";
-import { generateId } from "../idHelper";
 
 import { 
   FamilyMember, 
@@ -45,7 +44,7 @@ export const createMember = createAsyncThunk(
 
 export const updateMember = createAsyncThunk(
   //action type string
-  'family/createMember',
+  'family/updateMember',
   // callback function
   async (updateMemberInput: FamilyMemberEditInput) => {
     const updateResponse = await fetch('http://localhost:3333/family/updateMember', {
@@ -61,22 +60,22 @@ export const updateMember = createAsyncThunk(
   return {everyone, updateResponse}
 })
 
-export const deleteMember = createAsyncThunk(
+export const updateRelationship = createAsyncThunk(
   //action type string
-  'family/createMember',
+  'family/updateRelationship',
   // callback function
-  async (deleteMemberInput: FamilyMemberDeleteInput) => {
-    const deleteResponse = await fetch('http://localhost:3333/family/deleteMember', {
+  async (updateRelationshipInput: RelationshipInput) => {
+    const updateResponse = await fetch('http://localhost:3333/family/updateRelationship', {
         method: 'POST',
         mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(deleteMemberInput)
+        body: JSON.stringify(updateRelationshipInput)
     }).then((data) => data.json());
 
     const everyone = await fetch('http://localhost:3333/family/everyone').then(
       (data) => data.json())
 
-  return {everyone, deleteResponse}
+  return {everyone, updateResponse}
 })
 
 export const familyMembersSlice = createSlice({
@@ -93,7 +92,7 @@ export const familyMembersSlice = createSlice({
       
       editFamilyMember: (state, action: PayloadAction<FamilyMemberEditInput>) => {
         const indexOfMemberToEdit = state.familyMembers.findIndex(member => member._id === action.payload._id);
-        const memberToEdit = state.familyMembers[indexOfMemberToEdit];
+       const memberToEdit = state.familyMembers[indexOfMemberToEdit];
         state.familyMembers[indexOfMemberToEdit] = { ...action.payload, relationships: memberToEdit.relationships };
         localStorage.setItem('familyMembers', JSON.stringify(state.familyMembers));
         return state;
@@ -149,11 +148,11 @@ export const familyMembersSlice = createSlice({
         })
 
         builder
-        .addCase(deleteMember.fulfilled, (state, action) => {
-          state.familyMembers = action.payload.familyMemberId; //everyone?
-          state.lastFamilyMemberIdAdded = action.payload.deletedResponse.insertedId;
+        .addCase(updateRelationship.fulfilled, (state, action) => {
+          state.familyMembers = action.payload.everyone; //familyMemberId?
+          state.lastFamilyMemberIdAdded = action.payload.updateResponse.insertedId;
         })
     }
   })
 
-export const {  editFamilyMember, addRelationshipToMember } = familyMembersSlice.actions;
+export const { addRelationshipToMember } = familyMembersSlice.actions;

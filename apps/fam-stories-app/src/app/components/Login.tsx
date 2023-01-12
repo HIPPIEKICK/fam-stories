@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { batch} from "react-redux";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../utils/utils";
 import user from "../store/user";
 import { AddButton, BodyText, Devices, Input, Label, ThirdTitle } from "./GlobalStyles";
 import { EditFamForm } from "../pages/EditProfilePage";
@@ -47,7 +46,7 @@ const LogIn = () => {
             dispatch(user.actions.setError(null))
           })
         } else {
-          alert("error, it seams that you haven't registerd yet")
+          //alert("error, it seams that you haven't registerd yet")
           batch(() => {
             dispatch(user.actions.setUsername(null))
             dispatch(user.actions.setAccessToken(null))
@@ -145,3 +144,7 @@ const Bwrapper = styled.div`
   justify-content: center;
   //border: 2px solid green;
 `
+
+function API_URL(mode: string): RequestInfo | URL {
+  throw new Error("Function not implemented.");
+}

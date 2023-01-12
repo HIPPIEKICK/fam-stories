@@ -29,13 +29,15 @@ export const ListFamilyMembers = () => {
 
     
         return (
-            <li key={familyMember._id}>
+            <li key={familyMember._id}> 
             <li><Link to={`/profilepage/${familyMember._id}`}>{familyMember.name}</Link> </li>- {familyMember.birthYear} - {familyMember.locality} - {familyMember.title}
-            <RelationList>{familyRelationshipList}</RelationList>
+            <RelationList>{familyRelationshipList}</RelationList> 
             <EditButton onClick={() => navigate('/editprofile/' + familyMember._id) }>Edit</EditButton>
             <AddButton>X</AddButton>
             </li>
             //type="button" onClick={() => onRemoveClick(familyMember)}
+
+            //sort by letters?
         );
     });
 

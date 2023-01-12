@@ -6,12 +6,10 @@ import { ObjectId } from 'mongodb';
 const router = express.Router();
 
 router.get('/everyone', async (req, res) => {
-
     const dbConnection = getDb();
     const collection = dbConnection.collection('familyMembers');
 
     const everyOne = await collection.find({}).toArray();
-
     return res.json(everyOne);
     
 });
@@ -45,7 +43,6 @@ router.post('/createMember', async (req, res) => {
     const newFamilyMember = req.body;
 
     const insertResponse = await collection.insertOne(newFamilyMember)
-
     res.json(insertResponse);
 });
 
@@ -56,19 +53,17 @@ router.post('/updateMember', async (req, res) => {
     const updateFamilyMember = req.body;
 
     const updateResponse = await collection.updateOne(updateFamilyMember)
-
     res.json(updateResponse);
 });
 
-router.post('/deleteMember', async (req, res) => {
+router.post('/updateRelationship', async (req, res) => {
     const dbConnection = getDb();
     const collection = dbConnection.collection('familyMembers');
 
-    const deleteFamilyMember = req.body;
+    const updateFamilyMember = req.body;
 
-    const deleteResponse = await collection.updateOne(deleteFamilyMember)
-
-    res.json(deleteResponse);
+    const updateResponse = await collection.updateOne(updateFamilyMember) //Relationship?
+    res.json(updateResponse);
 });
 
 export default router;
