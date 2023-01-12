@@ -27,7 +27,7 @@ export type FamilyMemberEditInput = & FamilyMemberInput & {
 
 export type FamilyMember = FamilyMemberInput & { 
   _id: string;
-  relationships: Relationship[];
+  relationships?: Relationship[];
 };
 
 export type RelationshipInput = {

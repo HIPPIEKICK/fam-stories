@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { batch} from "react-redux";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
-import user from "../store/user";
+import { setUsername, setAccessToken, setUserId, setError } from "../store/user";
 import { AddButton, BodyText, Devices, Input, Label, ThirdTitle } from "./GlobalStyles";
 import { EditFamForm } from "../pages/EditProfilePage";
+import { API_URL } from "../utils/utils";
 
 const LogIn = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setStateUsername] = useState('')
+  const [password, setStatePassword] = useState('')
   const [mode, setMode] = useState("login")
   //const [loginError, setLoginError] = useState("");
   const dispatch = useAppDispatch()
@@ -34,24 +35,26 @@ const LogIn = () => {
       },
       body: JSON.stringify({username: username, password: password})
     }
+    console.log('EMIL WAS HERE2!!')
+    console.log(API_URL(mode));
     fetch(API_URL(mode), options)
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        if(data.sucess) {
+        if(data) {
           batch(() => {
-            dispatch(user.actions.setUsername(data.response.username))
-            dispatch(user.actions.setAccessToken(data.response.accessToken))
-            dispatch(user.actions.setUserId(data.response.id))
-            dispatch(user.actions.setError(null))
+            dispatch(setUsername(data.response.username))
+            dispatch(setAccessToken(data.response.accessToken))
+            dispatch(setUserId(data.response.id))
+            dispatch(setError(null))
           })
         } else {
-          //alert("error, it seams that you haven't registerd yet")
+          alert("error, it seams that you haven't registerd yet")
           batch(() => {
-            dispatch(user.actions.setUsername(null))
-            dispatch(user.actions.setAccessToken(null))
-            dispatch(user.actions.setUserId(null))
-            dispatch(user.actions.setError(data.response))
+            dispatch(setUsername(null))
+            dispatch(setAccessToken(null))
+            dispatch(setUserId(null))
+            dispatch(setError(data.response))
           })
         }
       })
@@ -63,18 +66,19 @@ const LogIn = () => {
       <Form onSubmit={onFormSubmit}>
           <Label htmlFor="username">Username</Label>
           <Input type="text" id="username" placeholder="username" value={username}
-                onChange={(e) => setUsername(e.target.value)} />
+                onChange={(e) => setStateUsername(e.target.value)} />
           <Label htmlFor="password">Password</Label>
           <Input type="password" id="password" placeholder="password" value={password}
-                onChange={(e) => setPassword(e.target.value)} />
-      </Form>
-          <InfoMsg>
-            {mode === "register" && password.length < 8 ? 'minimum 8 characters required' : ''}
-          </InfoMsg>
+                onChange={(e) => setStatePassword(e.target.value)} />
           <Bwrapper>
             {mode === "login" && <AddButton type="submit">Log in</AddButton>}
             {mode === "register" && <AddButton type="submit">Register</AddButton>}
           </Bwrapper>
+      </Form>
+          <InfoMsg>
+            {mode === "register" && password.length < 8 ? 'minimum 8 characters required' : ''}
+          </InfoMsg>
+          
           <Label>
             <ModeLabel htmlFor="register">{mode === "register" ? "" : "No acount? Register here" }
             <Input type="radio" id="register" name="register" checked={mode === "register"} onChange={()=> setMode("register")}/>
@@ -144,7 +148,3 @@ const Bwrapper = styled.div`
   justify-content: center;
   //border: 2px solid green;
 `
-
-function API_URL(mode: string): RequestInfo | URL {
-  throw new Error("Function not implemented.");
-}

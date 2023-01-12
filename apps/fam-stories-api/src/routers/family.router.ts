@@ -50,20 +50,13 @@ router.post('/updateMember', async (req, res) => {
     const dbConnection = getDb();
     const collection = dbConnection.collection('familyMembers');
 
-    const updateFamilyMember = req.body;
+    const memberToUpdate = req.body;
+    const id = memberToUpdate._id;
+    delete memberToUpdate._id;
 
-    const updateResponse = await collection.updateOne(updateFamilyMember)
+    const updateResponse = await collection.replaceOne({_id: new ObjectId(id)}, memberToUpdate)
     res.json(updateResponse);
 });
 
-router.post('/updateRelationship', async (req, res) => {
-    const dbConnection = getDb();
-    const collection = dbConnection.collection('familyMembers');
-
-    const updateFamilyMember = req.body;
-
-    const updateResponse = await collection.updateOne(updateFamilyMember) //Relationship?
-    res.json(updateResponse);
-});
 
 export default router;

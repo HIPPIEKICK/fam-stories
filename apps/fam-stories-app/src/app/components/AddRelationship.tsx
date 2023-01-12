@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { addRelationshipToMember } from "../store/familyMembersSlice";
+import { updateRelationship } from "../store/familyMembersSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import styled from "styled-components";
 import { BodyText, AddButton, Label } from "./GlobalStyles";
@@ -19,7 +19,7 @@ export const AddRelationship = () => {
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
         if(familyMemberId) {
-            dispatch(addRelationshipToMember({fromFamilyMemberId: familyMemberId, toFamilyMemberId, relationtype}))
+            dispatch(updateRelationship({fromFamilyMemberId: familyMemberId, toFamilyMemberId, relationtype}))
         }
     }
 
