@@ -89,17 +89,14 @@ export const updateRelationship = createAsyncThunk(
     console.log('updateRelationshipInput', updateRelationshipInput);
     const state  = getState() as RootState; 
     console.log('12344234234')
-    const memberToUpdate = state.familyMembers.familyMembers.find(member => member._id === updateRelationshipInput.fromFamilyMemberId);
+    let memberToUpdate = state.familyMembers.familyMembers.find(member => member._id === updateRelationshipInput.fromFamilyMemberId);
     console.log('memberToUpdate', memberToUpdate);
     console.log('w42342342')
     if(!memberToUpdate) {
       
       throw new Error('memberToUpdate not found');
     }
-    if(!memberToUpdate.relationships) {
-      console.log('NO RELATIONSHIPS')
-      memberToUpdate.relationships = [];
-    }
+
     console.log('NO RELATIONSHIPS')
     
     const dataToAdd = { 
@@ -107,7 +104,11 @@ export const updateRelationship = createAsyncThunk(
       familyMemberId: '63bf10d1e2d6584b528a9fe5'
     }
     console.log('dataToAdd', dataToAdd);
-    memberToUpdate.relationships.push(dataToAdd)
+    if(memberToUpdate.relationships) {
+      memberToUpdate.relationships.push(dataToAdd)
+    } else {
+      memberToUpdate = { ...memberToUpdate, relationships: [dataToAdd] }
+    }
 
     const updateResponse = await fetch('http://localhost:3333/family/updateMember', {
         method: 'POST',
