@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import {  useAppSelector,useAppDispatch  } from "../store/store";
 import { Footer } from '../components/Footer';
-import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, Title, RelList } from '../components/GlobalStyles';
+import { OuterWrapper, InnerWrapper, ThirdTitle, BackButton, BodyText, TextWrapper, Title, RelList, EditButton } from '../components/GlobalStyles';
 import { Navbar } from '../components/NavBar';
 import { FamContainer, FamWrapper } from '../components/ListFamilyMembers';
 import styled from 'styled-components';
@@ -31,14 +31,10 @@ export const ProfilePage = () => {
 
     if(!familyMember) {
         return <BodyText>
-         <div>
-                        {JSON.stringify(familyMember)}
-                    </div>
-
-                    <div>{familyMemberId}</div>
+         <div>{JSON.stringify(familyMember)}</div>
+        <div>{familyMemberId}</div>
         <div>Family member not found!!!!</div></BodyText>
     }
-
 
     const listOfRelationships = familyMember.relationships ? familyMember.relationships.map((relationship:Relationship) => {
         const relationMember = familyMembers.find((familyMember) => familyMember._id === relationship.familyMemberId) 
@@ -64,6 +60,8 @@ export const ProfilePage = () => {
                         {familyMember.title} <br />
                     </BodyText>
                     <RelList2>{listOfRelationships}</RelList2>
+                    <EditButton>Add Text</EditButton>
+                    <EditButton>Add Photo</EditButton>
                     <BodyText>
                         This is a profile page to add information and history about that specific familymember.<br />
                         And even things like photos, videos, or recepies, articles or other thing you have.</BodyText>

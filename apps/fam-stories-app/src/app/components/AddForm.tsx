@@ -57,8 +57,8 @@ export const ShowButton = styled.button`
     }
 
 @media ${Devices.laptop} {
-    height: 5em;
-    width: 5em;
+    height: 6.5em;
+    width: 6.5em;
     }
 @media ${Devices.desktop} {
     height: 7em;

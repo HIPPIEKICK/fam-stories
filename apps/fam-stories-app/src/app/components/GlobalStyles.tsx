@@ -173,7 +173,7 @@ export const AddButton = styled.button`
 
 export const EditButton = styled.button`
     font-size: 1em;
-    margin: 1em 0em;
+    margin: 1em 1em 1em 0em;
     padding: 0.5em 0.65em;
     border-radius: 14px;
     border: 1px solid var(--color-darkerGreen);
@@ -201,7 +201,7 @@ height: 95px;
 width: 95px;
 &:hover{
   color: var(--color-white);
-  background-color: var(--color-green);
+  background-color: var(--color-red);
   transition: 0.7s;
 }
 @media ${Devices.tablet} {
@@ -339,7 +339,7 @@ export const ThirdTitle = styled.h3`
     font-size: 0.8em;
 
 @media ${Devices.laptop} {
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 50ch;
     } 
 @media ${Devices.desktop} {
