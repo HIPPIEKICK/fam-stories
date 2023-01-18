@@ -30,9 +30,9 @@ export const UserPage = () => {
               </FamWrapper>                  
             </FamContainer>
             <TextWrapper>
-            <SubTitle>The users name</SubTitle>
-            <ThirdTitle>Some information about the user and picture</ThirdTitle>
-            <BodyText>(And in the future possibility to add familymembers to access shared relatives)</BodyText>
+            <SubTitle>Welcome (users name)</SubTitle> <br />
+            <ThirdTitle>Some information about the user and picture</ThirdTitle> <br />
+            <BodyText>(And in the future possibility to add familymembers to access shared relatives)</BodyText> <br /> <br />
             <BackButton type="button" onClick={onHomeButtonClick}>Return to Home Page</BackButton>
             <BackButton type="button" onClick={() => {
                 dispatch(setLogout({}));
