@@ -13,6 +13,7 @@
         "outputPath": "dist/apps/fam-stories-api",
         "main": "apps/fam-stories-api/src/main.ts",
         "tsConfig": "apps/fam-stories-api/tsconfig.app.json",
+        "generatePackageJson": true,
         "assets": ["apps/fam-stories-api/src/assets"]
       },
       "configurations": {

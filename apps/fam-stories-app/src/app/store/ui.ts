@@ -1,5 +1,6 @@
-/* eslint-disable linebreak-style */
-import { createSlice } from '@reduxjs/toolkit';
+// eslint-disable linebreak-style 
+
+/*import { createSlice } from '@reduxjs/toolkit';
 
 const ui = createSlice({
   name: 'ui',
@@ -13,4 +14,4 @@ const ui = createSlice({
   }
 });
 
-export default ui;
+export default ui; */

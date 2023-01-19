@@ -51,18 +51,15 @@ export const Nav = styled.li`
     font-family: 'Open Sans';
     opacity: 0.9;
     z-index: 3;
-
     .active
     text-decoration: underline;
     color: var(--color-white);
   }
-
 @media ${Devices.tablet} {
     top: -7em;
     left: 28%;
     font-size: 1.2em;
 }
-
 @media ${Devices.laptop} {
     top: -9em;
     left: 28%;
@@ -70,16 +67,13 @@ export const Nav = styled.li`
     color: var(--color-white);
     margin: 0.5em;
     z-index: 10;
-
     li {
     float: left;
     }
-
     a {
     color: var(--color-black);
     background-color:var(--color-white);
   }
-
     a:hover {
     background-color: var(--color-green);
     border-radius: 8px;
@@ -89,7 +83,6 @@ export const Nav = styled.li`
     .active {
     border-radius: 8px;
 }
-
 @media ${Devices.desktop} {
     top: -7em;
     left: 32%;
