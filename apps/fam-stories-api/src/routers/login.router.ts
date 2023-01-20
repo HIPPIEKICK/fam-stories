@@ -14,24 +14,7 @@ import * as bcrypt from 'bcryptjs';
 
 ///////
 const router = express.Router(); //?
-/*
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  // npm install crypto
-  accessToken: {
-    type: String,
-    default: () => crypto.randomBytes(128).toString("hex")
-  }
-});
-*/
+
 type User = {
   username: string;
   password: string;
@@ -121,56 +104,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-
-
-
 export default router;
-
-/*
-const RecipesSchema = new mongoose.Schema({
-  id: {
-    type: Number
-  },
-  Name: {
-    type: String
-  },
-  Ingredients: {
-    type: String
-  },
-  TotalTimeMinuits: {
-    type: Number
-  },
-  Portions: {
-    type: Number
-  },
-}); 
-
-const Recipes = mongoose.model("Recipe", RecipesSchema);
-
-if (true) {
-  const resetDatabase = async () => {
-    await Recipes.deleteMany();
-    RecipeData.forEach(item => {
-      const newRecipe= new Recipes(item);
-      newRecipe.save();
-    })
-  }
-  resetDatabase();
-}
-
-app.get("/recipes", authenticateUser);
-app.get("/recipes", async (req, res)=> {
-  const recipes = await Recipes.find({});
-  res.status(200).json({ success: true, response: recipes });
-}); 
-
-
-// Start defining your routes here
-app.get("/", (req, res) => {
-  res.send("Welcome to Recipes!");
-}); 
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-}); */
