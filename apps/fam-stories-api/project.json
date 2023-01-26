@@ -1,10 +1,8 @@
 {
-  "version": "1.0.0",
-  "description": "Starter project to get up and running with express quickly",
   "name": "fam-stories-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/fam-stories-api/src",
-  "type": "module",
+  "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/webpack:webpack",
@@ -13,7 +11,7 @@
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/fam-stories-api",
-        "main": "apps/fam-stories-api/src/main.js",
+        "main": "apps/fam-stories-api/src/main.ts",
         "tsConfig": "apps/fam-stories-api/tsconfig.app.json",
         "generatePackageJson": true,
         "assets": ["apps/fam-stories-api/src/assets"]
@@ -25,8 +23,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/fam-stories-api/src/environments/environment.js",
-              "with": "apps/fam-stories-api/src/environments/environment.prod.js"
+              "replace": "apps/fam-stories-api/src/environments/environment.ts",
+              "with": "apps/fam-stories-api/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -47,34 +45,17 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/fam-stories-api/**/*.js"]
+        "lintFilePatterns": ["apps/fam-stories-api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/fam-stories-api/jest.config.js",
+        "jestConfig": "apps/fam-stories-api/jest.config.ts",
         "passWithNoTests": true
       }
     }
   },
-  "tags": [],
-    "scripts": {
-      "start": "babel-node src/main.js",
-      "dev": "nodemon src/main.js --exec babel-node"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "@babel/core": "^7.17.9",
-      "@babel/node": "^7.16.8",
-      "@babel/preset-env": "^7.16.11",
-      "bcrypt": "^5.1.0",
-      "cors": "^2.8.5",
-      "crypto": "^1.0.1",
-      "express": "^4.17.3",
-      "mongoose": "^6.3.0",
-      "nodemon": "^2.0.15"
-    }
-  }
+  "tags": []
+}
